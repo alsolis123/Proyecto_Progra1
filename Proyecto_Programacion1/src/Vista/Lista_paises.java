@@ -1,13 +1,22 @@
 
 package Vista;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class Lista_paises extends javax.swing.JFrame {
 
     
-    public Lista_paises() {
+    public Lista_paises() throws IOException{
         initComponents();
         setLocationRelativeTo(null);
+        llenar_tabla();
     }
 
     /**
@@ -97,6 +106,49 @@ public class Lista_paises extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
+    public void llenar_tabla()throws IOException{
+        
+        Countries paises = new Countries();
+        
+        JSONArray array = paises.Get_Countries();
+        
+        JSONObject object =null;
+        
+        DefaultTableModel model = (DefaultTableModel) listado.getModel();
+        
+        Object rowData[] = new Object[6];
+        
+        if (array!=null){
+            
+            for (int i = 0; i < array.length(); i++) {
+                
+                
+                object = array.getJSONObject(i);
+                long poblacion_maxima = 0;
+                
+                rowData[0]= object.getString("name");
+                rowData[1]= object.getString("capital");
+                rowData[2]= object.getString("region");
+                rowData[3]= object.getString("subregion");
+                rowData[4]= object.getLong("population");
+                
+//                Calculo del cupo permitido por pais
+                
+                poblacion_maxima = (long) ((long)rowData[4] * 0.000001);
+                
+//                Fin del calculo
+
+                rowData[5]= poblacion_maxima;
+                model.addRow(rowData);
+                
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null, "No existen datos que mostrar");
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -127,7 +179,11 @@ public class Lista_paises extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               try{
                 new Lista_paises().setVisible(true);
+               }catch(IOException e){
+                   Logger.getLogger(Lista_paises.class.getName()).log(Level.SEVERE, null, e);
+               }
             }
         });
     }
