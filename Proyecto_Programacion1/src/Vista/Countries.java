@@ -1,13 +1,26 @@
 
 package Vista;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class Countries {
     private String url;
     private int count;
     private int sCode;
 
-    public Countries(String url, int count, int sCode) {
+    public static void main(String[] args) {
+       
+        PrintCountries();
+        
+    }
+    
+    public Countries() {
         this.url = "";
         this.count = 0;
         this.sCode = 0;
@@ -37,9 +50,26 @@ public class Countries {
         this.sCode = sCode;
     }
     
-    
-    
-    
-    
+    public static void PrintCountries () /*throws MalformedURLException, IOException*/{
+        try{
+        URL url = new URL ("https://restcountries.eu/rest/v1/all");
+        
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())); 
+        
+        String str, responsestring="";
+        
+        while ((str=in.readLine())!=null){
+            
+            responsestring+= str +"\n";
+            
+        }
+        System.out.println(responsestring);
+        }catch(Exception e){
+            
+        }
+            
+    }
     
 }
