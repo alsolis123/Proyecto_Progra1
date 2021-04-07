@@ -24,6 +24,7 @@ public class Distribucion extends javax.swing.JFrame {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         base_datos = new javax.swing.JButton();
+        listado_paises = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -34,21 +35,32 @@ public class Distribucion extends javax.swing.JFrame {
             }
         });
 
+        listado_paises.setText("Listado de Paises");
+        listado_paises.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listado_paisesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(33, 33, 33)
                 .addComponent(base_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addComponent(listado_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(154, Short.MAX_VALUE)
-                .addComponent(base_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(base_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listado_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -70,6 +82,12 @@ public class Distribucion extends javax.swing.JFrame {
         prin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_base_datosActionPerformed
+
+    private void listado_paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listado_paisesActionPerformed
+        Lista_paises lista = new Lista_paises();
+        lista.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_listado_paisesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,5 +130,6 @@ public class Distribucion extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton listado_paises;
     // End of variables declaration//GEN-END:variables
 }

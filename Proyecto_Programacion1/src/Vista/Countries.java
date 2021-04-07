@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.JSONArray;
 
 
 public class Countries {
@@ -14,11 +15,7 @@ public class Countries {
     private int count;
     private int sCode;
 
-    public static void main(String[] args) {
-       
-        PrintCountries();
-        
-    }
+    
     
     public Countries() {
         this.url = "";
@@ -50,11 +47,13 @@ public class Countries {
         this.sCode = sCode;
     }
     
-    public static void PrintCountries () /*throws MalformedURLException, IOException*/{
-        try{
+    public JSONArray Get_Countries () throws MalformedURLException, IOException{
+        
         URL url = new URL ("https://restcountries.eu/rest/v1/all");
         
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        
+        con.setRequestMethod("GET");
         
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())); 
         
@@ -65,11 +64,12 @@ public class Countries {
             responsestring+= str +"\n";
             
         }
-        System.out.println(responsestring);
-        }catch(Exception e){
-            
-        }
-            
+        
+        in.close();
+        
+        JSONArray array = new JSONArray(responsestring);
+        
+        return array;
     }
     
 }
