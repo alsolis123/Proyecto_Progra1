@@ -1,6 +1,8 @@
 
 package Vista;
 
+import Clases.Persona;
+
 
 public class Creacion_usuario extends javax.swing.JFrame {
 

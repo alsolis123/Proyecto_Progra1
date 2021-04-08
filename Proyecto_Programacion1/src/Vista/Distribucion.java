@@ -1,6 +1,9 @@
 
 package Vista;
 
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 
 public class Distribucion extends javax.swing.JFrame {
 
@@ -84,9 +87,13 @@ public class Distribucion extends javax.swing.JFrame {
     }//GEN-LAST:event_base_datosActionPerformed
 
     private void listado_paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listado_paisesActionPerformed
+        try{
         Lista_paises lista = new Lista_paises();
         lista.setVisible(true);
         this.setVisible(false);
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_listado_paisesActionPerformed
 
     /**
