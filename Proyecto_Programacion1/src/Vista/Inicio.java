@@ -6,13 +6,14 @@ import javax.swing.JOptionPane;
 
 
 public class Inicio extends javax.swing.JFrame {
-
+    public String usuario_inicio;
     
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
 //        Presionar enter y presionar ingresar
         this.getRootPane().setDefaultButton(ingresar);
+        this.usuario_inicio = "";
     }
 
     
@@ -108,6 +109,10 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void GetUsuario(){
+        
+    }
+    
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
         Creacion_usuario registrarse = new Creacion_usuario();
         registrarse.setVisible(true);
@@ -131,6 +136,7 @@ public class Inicio extends javax.swing.JFrame {
             Distribucion dis = new Distribucion();
             this.setVisible(false);
             dis.setVisible(true);
+            usuario_inicio = this.usuario.getText();
         }
     }//GEN-LAST:event_ingresarActionPerformed
 

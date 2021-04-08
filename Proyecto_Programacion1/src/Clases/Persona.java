@@ -19,6 +19,7 @@ public class Persona {
     private boolean condicion;
     private boolean error;
     private boolean acceso;
+    public String usuario_global;
     
     //Variables de conexion
     Conexion con1 = new Conexion();
@@ -37,8 +38,7 @@ public class Persona {
         this.condicion = false;
         this.error = false;
         this.acceso= false;
-        
-        
+        this.usuario_global= "";
     }
 
     public String getNombre() {
@@ -130,6 +130,7 @@ public class Persona {
                 }
                 if(contra.equals(contraseña)){
                     acceso = true;
+                    
                 }else{
                     JOptionPane.showMessageDialog(null, "La contraseña para "+usuario+" es incorrecta");
                 }

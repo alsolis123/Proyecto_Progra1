@@ -1,6 +1,12 @@
 
 package Vista;
 
+import Clases.Capacidad;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author alsolis
@@ -11,6 +17,7 @@ public class Estadisticas extends javax.swing.JFrame {
     public Estadisticas() {
         initComponents();
         setLocationRelativeTo(null);
+        cantidad_total();
     }
 
     /**
@@ -23,47 +30,59 @@ public class Estadisticas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cantidad_beneficiarios = new javax.swing.JTextField();
+        lista_total = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         paises = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        lista_carreras = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        carreras = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        lista_paises = new javax.swing.JTextField();
         back = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        pais_ben = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cantidad_beneficiarios.setEnabled(false);
+        lista_total.setEnabled(false);
 
-        jLabel1.setText("Cantidad Beneficiarios en total");
+        jLabel1.setText("Beneficiarios en total");
 
         jLabel2.setText("Pais de origen");
 
         paises.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno", "Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "The Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bonaire", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "United States Minor Outlying Islands", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "The Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Ivory Coast", "Iran", "Iraq", "Republic of Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Republic of Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Federated States of Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Kosovo", "Réunion", "Romania", "Russia", "Rwanda", "Saint Barthélemy", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "East Timor", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe" }));
-
-        jTextField1.setEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        paises.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                paisesActionPerformed(evt);
+            }
+        });
+
+        lista_carreras.setEnabled(false);
+        lista_carreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lista_carrerasActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Cantidad de personas por este pais");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una carrera", "Administracion de Empresas", "Animacion", "Arquitectura", "Artes Plasticas", "Biologia", "Comercio Internacional", "Contaduria Publica", "Contaduria Publica", "Derecho", "Diseño Grafico", "Economia", "Enseñanza del Ingles", "Enseñanza preescolar", "Farmacia", "Filosofia", "Fisica teorica fundamental", "Fotografia", "Ingeneria Electromecanica", "Ingeneria Industrial", "Ingenieria Civil", "Ingenieria de alimentos", "Ingenieria del Software", "Ingenieria Electrica", "Ingenieria en Sistemas de Informacion", "Ingenieria Mecatronica", "Matematica teorica fundamental", "Medicina y Cirugia", "Mercadeo", "Odontologia", "Periodismo y Comunicacion", "Psicopedagogia", "Publicidad", "Relaciones Internacionales", "Sociologia", "Terapia Fisica", "Turismo" }));
+        carreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una carrera", "Administracion de Empresas", "Animacion", "Arquitectura", "Artes Plasticas", "Biologia", "Comercio Internacional", "Contaduria Publica", "Contaduria Publica", "Derecho", "Diseño Grafico", "Economia", "Enseñanza del Ingles", "Enseñanza preescolar", "Farmacia", "Filosofia", "Fisica teorica fundamental", "Fotografia", "Ingeneria Electromecanica", "Ingeneria Industrial", "Ingenieria Civil", "Ingenieria de alimentos", "Ingenieria del Software", "Ingenieria Electrica", "Ingenieria en Sistemas de Informacion", "Ingenieria Mecatronica", "Matematica teorica fundamental", "Medicina y Cirugia", "Mercadeo", "Odontologia", "Periodismo y Comunicacion", "Psicopedagogia", "Publicidad", "Relaciones Internacionales", "Sociologia", "Terapia Fisica", "Turismo" }));
+        carreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carrerasActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Carrera Universitaria");
 
         jLabel5.setText("Cantidad de personas por esta carrera");
 
-        jTextField2.setEnabled(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        lista_paises.setEnabled(false);
+        lista_paises.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                lista_paisesActionPerformed(evt);
             }
         });
 
@@ -74,20 +93,16 @@ public class Estadisticas extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Sin beneficio");
+
+        pais_ben.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(cantidad_beneficiarios, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -98,18 +113,28 @@ public class Estadisticas extends javax.swing.JFrame {
                                     .addComponent(paises, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
-                                .addComponent(jLabel2)))
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(pais_ben, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(123, 123, 123)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lista_carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lista_total, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
                 .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(28, 28, 28)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lista_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(362, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,25 +146,29 @@ public class Estadisticas extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(carreras, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                     .addComponent(paises))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(lista_carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(pais_ben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cantidad_beneficiarios, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lista_total, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(back)
                 .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addContainerGap(162, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lista_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(158, 158, 158)))
         );
 
@@ -159,19 +188,36 @@ public class Estadisticas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    
+    
+    
+    
+    private void lista_carrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_carrerasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_lista_carrerasActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void lista_paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_paisesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_lista_paisesActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         Distribucion dis = new Distribucion();
         dis.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paisesActionPerformed
+        
+        try {
+            cantidad_por_pais();
+        } catch (IOException ex) {
+            Logger.getLogger(Estadisticas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_paisesActionPerformed
+
+    private void carrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrerasActionPerformed
+        cantidad_por_carrera();
+    }//GEN-LAST:event_carrerasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,19 +253,86 @@ public class Estadisticas extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void cantidad_total(){
+        int fila = 0, contador = 0;
+        int cantidad;
+        String nombre, country;
+        Principal prin = new Principal();
+        DefaultTableModel model = (DefaultTableModel) prin.TablaDatos.getModel();
+
+        contador = model.getRowCount();
+        lista_total.setText(String.valueOf(contador));
+    }
+    
+    public void cantidad_por_pais() throws IOException{
+        int fila = 0, contador = 0;
+        int cantidad;
+        long sin_beneficio;
+        String nombre, country = "";
+        Principal prin = new Principal();
+        DefaultTableModel model = (DefaultTableModel) prin.TablaDatos.getModel();
+        
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            
+            nombre = (String)prin.TablaDatos.getValueAt(fila,7);
+            country = (String)paises.getSelectedItem();
+            
+            if(nombre.equals(country)){
+                contador++;
+            }
+            fila++;
+        }
+        lista_paises.setText(String.valueOf(contador));
+        
+        Capacidad cap = new Capacidad();
+        
+        sin_beneficio = contador - cap.Capacidad_personas(country);
+        
+        pais_ben.setText(String.valueOf(sin_beneficio));
+    }
+    
+    public void cantidad_por_carrera(){
+        int fila = 0, contador = 0;
+        int cantidad;
+        String nombre, carrer;
+        Principal prin = new Principal();
+        DefaultTableModel model = (DefaultTableModel) prin.TablaDatos.getModel();
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            
+            nombre = (String)prin.TablaDatos.getValueAt(fila,5);
+            carrer = (String)carreras.getSelectedItem();
+            
+            if(nombre.equals(carrer)){
+                contador++;
+            }
+            fila++;
+        }
+        lista_carreras.setText(String.valueOf(contador));
+    }
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JTextField cantidad_beneficiarios;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> carreras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField lista_carreras;
+    private javax.swing.JTextField lista_paises;
+    private javax.swing.JTextField lista_total;
+    private javax.swing.JTextField pais_ben;
     private javax.swing.JComboBox<String> paises;
     // End of variables declaration//GEN-END:variables
 }
