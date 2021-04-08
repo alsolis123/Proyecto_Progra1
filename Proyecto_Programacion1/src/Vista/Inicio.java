@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Clases.Persona;
 import javax.swing.JOptionPane;
 
 
@@ -10,6 +11,8 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
+//        Presionar enter y presionar ingresar
+        this.getRootPane().setDefaultButton(ingresar);
     }
 
     

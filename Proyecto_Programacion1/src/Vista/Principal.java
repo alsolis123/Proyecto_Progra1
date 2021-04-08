@@ -1,9 +1,11 @@
 
 package Vista;
 
+import Clases.Capacidad;
 import Configuracion.Conexion;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -12,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
@@ -57,12 +61,12 @@ public class Principal extends javax.swing.JFrame {
         apellido2 = new javax.swing.JTextField();
         identificacion = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
-        pais = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         fecha = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         estado_civil = new javax.swing.JComboBox<>();
+        pais = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -148,6 +152,8 @@ public class Principal extends javax.swing.JFrame {
 
         estado_civil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin especificar", "Soltero (a)", "Casado (a)", "Union Libre", "Divorciado (a)", "Viudo (a)" }));
 
+        pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno", "Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "The Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bonaire", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "United States Minor Outlying Islands", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "The Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Ivory Coast", "Iran", "Iraq", "Republic of Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Republic of Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Federated States of Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Kosovo", "Réunion", "Romania", "Russia", "Rwanda", "Saint Barthélemy", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "East Timor", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,13 +185,13 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(estado_civil, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pais, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(estado_civil, javax.swing.GroupLayout.Alignment.LEADING, 0, 119, Short.MAX_VALUE)
+                            .addComponent(pais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(direccion, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(129, 129, 129)
+                        .addGap(125, 125, 125)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -199,9 +205,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -437,10 +443,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_nombreActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        try{
         agregar();
         vaciar_cajas();
         limpiar();
         listar();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
     }//GEN-LAST:event_agregarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -482,6 +493,8 @@ public class Principal extends javax.swing.JFrame {
                this.estado.setBackground(new Color (187,187,187));
                this.estado.setText("Inactivo");
            }
+           
+           
 
            String sql= "Select fecha_de_nacimiento from principal where idprincipal = "+ estud;
            try{
@@ -501,7 +514,7 @@ public class Principal extends javax.swing.JFrame {
                     identificacion.setText(iden);
                     carrera.setText(carrer);
                     estado_civil.setSelectedItem(civil);
-                    pais.setText(origen);
+                    pais.setSelectedItem(origen);
                     direccion.setText(direcc);
                     fecha.setDate(date1);
                     universidad.setText(uni);
@@ -517,10 +530,10 @@ public class Principal extends javax.swing.JFrame {
                
            }catch(Exception ex){
                JOptionPane.showMessageDialog(null, ex);
-           }
            
            
            
+        }
         }
     }//GEN-LAST:event_TablaDatosMouseClicked
 
@@ -531,6 +544,8 @@ public class Principal extends javax.swing.JFrame {
             listar();
         }catch(java.lang.NullPointerException ex){
             JOptionPane.showMessageDialog(null, "Debe de seleccionar algo de la lista");
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_modificarActionPerformed
 
@@ -563,37 +578,37 @@ public class Principal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Principal().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Principal().setVisible(true);
+            }
+        });
+    }
     void vaciar_cajas(){
         id.setText(null);
         nombre.setText("");
@@ -602,7 +617,7 @@ public class Principal extends javax.swing.JFrame {
         identificacion.setText("");
         carrera.setText("");
         estado_civil.setSelectedItem("Sin especificar");
-        pais.setText("");
+        pais.setSelectedItem("Seleccione uno");
         direccion.setText("");
         fecha.setDate(null);
         universidad.setText("");
@@ -613,7 +628,7 @@ public class Principal extends javax.swing.JFrame {
         estado.setBackground(new Color (187,187,187));
         estado.setText("Inactivo");
     }
-    void modificar(){
+    void modificar() throws IOException{
         
         String ida = id.getText();
         String nom = nombre.getText();
@@ -622,7 +637,7 @@ public class Principal extends javax.swing.JFrame {
         String id = identificacion.getText();
         String carrer = carrera.getText();
         String civil = (String)estado_civil.getSelectedItem();
-        String p_origen = pais.getText();
+        String p_origen = (String)pais.getSelectedItem();
         String direc = direccion.getText();
         String uni = universidad.getText();
         String cell = telefono.getText();
@@ -654,12 +669,16 @@ public class Principal extends javax.swing.JFrame {
             estado="Inactivo";
         }
         
+        
         if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
             p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
             email.equals("")){
             
             JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
         }else{
+            Capacidad cup = new Capacidad();
+           
+           if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
             String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
                 "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
                 "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
@@ -672,6 +691,9 @@ public class Principal extends javax.swing.JFrame {
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, ex);
             }
+           }else{
+               JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
+           }
         } 
     }
     
@@ -739,7 +761,9 @@ public class Principal extends javax.swing.JFrame {
         }
     }
             
-    void agregar(){
+    void agregar() throws IOException{
+        
+        
         boolean condicion = false;
         String nom = nombre.getText();
         String ap1 = apellido1.getText();
@@ -747,7 +771,7 @@ public class Principal extends javax.swing.JFrame {
         String id = identificacion.getText();
         String carrer = carrera.getText();
         String civil = (String)estado_civil.getSelectedItem();
-        String p_origen = pais.getText();
+        String p_origen = (String)pais.getSelectedItem();
         String direc = direccion.getText();
         String uni = universidad.getText();
         String cell = telefono.getText();
@@ -762,9 +786,9 @@ public class Principal extends javax.swing.JFrame {
             estado="Inactivo";
         }
         
-        
-        
-        
+        Capacidad cup = new Capacidad();
+           
+        if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
         
         try{
             Date nacimiento = fecha.getDate();
@@ -808,7 +832,9 @@ public class Principal extends javax.swing.JFrame {
         }catch(java.lang.NullPointerException ex){
             condicion = true;
         }
-        
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya no hay becas para este pais");
+        }
         
         
         
@@ -817,7 +843,7 @@ public class Principal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaDatos;
+    public javax.swing.JTable TablaDatos;
     private javax.swing.JButton agregar;
     private javax.swing.JTextField apellido1;
     private javax.swing.JTextField apellido2;
@@ -860,7 +886,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField nombre;
     private javax.swing.JButton nombreSort;
     private javax.swing.JTextField observacion;
-    private javax.swing.JTextField pais;
+    private javax.swing.JComboBox<String> pais;
     private javax.swing.JTextField telefono;
     private javax.swing.JTextField universidad;
     // End of variables declaration//GEN-END:variables
