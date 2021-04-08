@@ -1,41 +1,35 @@
 
 package Clases;
 
+import Vista.Principal;
 import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 
 public class Capacidad {
 //    Atributos
-    private Object nombre;
-    private String pais;
+    public Object nombre;
     private long poblacion;
     private int contador;
+    private String condicion;
 
     public Capacidad() {
         this.nombre = "";
-        this.pais = "";
-        this.poblacion = 0;
-        this.nombre = 0;
         this.contador = 0;
-        
+        this.poblacion = 0;
+        this.condicion = "";
     }
-
+    
+    
     public String getNombre() {
         return (String) nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
     }
 
     public long getPoblacion() {
@@ -46,13 +40,16 @@ public class Capacidad {
         this.poblacion = poblacion;
     }
     
-    public long Contador_personas(String pais) throws IOException{
+    public long Capacidad_personas(String pais) throws IOException{
         
-        Countries count = new Countries();
+        Countries paises = new Countries();
         
-        JSONArray array = count.Get_Countries();
+        JSONArray array = paises.Get_Countries();
         
         JSONObject object =null;
+        
+        
+        Object rowData[] = new Object[2];
         
         if (array!=null){
             
@@ -60,20 +57,39 @@ public class Capacidad {
                 
                 
                 object = array.getJSONObject(i);
-                long poblacion_maxima = 0;
                 
-                nombre= object.getString("name");
                 
-                if(nombre == pais){
-                    poblacion = object.getLong("population");
-                    poblacion = (long) ((long)poblacion * 0.000001);
-                }    
+                rowData[0]= object.getString("name");
+                
+                if(rowData[0].equals(pais)){
+                    
+                    rowData[1]= object.getLong("population");
+                
+//                Calculo del cupo permitido por pais
+                
+                poblacion = (long) ((long)rowData[1] * 0.000001);
+                }
             }
-
         }
         return poblacion;
     }
     
-    
-    
+    public int Cantidad_listadas(String pais){
+        int fila = 0;
+        Principal prin = new Principal();
+        DefaultTableModel model = (DefaultTableModel) prin.TablaDatos.getModel();
+//        model!=null
+        for (int i = 0; i < model.getRowCount(); i++) {
+            
+            nombre = (String)prin.TablaDatos.getValueAt(fila,7);
+            condicion = (String) prin.TablaDatos.getValueAt(fila,13);
+            
+            if(nombre.equals(pais)&&condicion.equals("Activo")){
+                contador++;
+            }
+            fila++;
+            
+        }
+    return contador;
+    }
 }

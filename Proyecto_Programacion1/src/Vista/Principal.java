@@ -1,9 +1,11 @@
 
 package Vista;
 
+import Clases.Capacidad;
 import Configuracion.Conexion;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -12,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
@@ -439,10 +443,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_nombreActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        try{
         agregar();
         vaciar_cajas();
         limpiar();
         listar();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
     }//GEN-LAST:event_agregarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -484,6 +493,8 @@ public class Principal extends javax.swing.JFrame {
                this.estado.setBackground(new Color (187,187,187));
                this.estado.setText("Inactivo");
            }
+           
+           
 
            String sql= "Select fecha_de_nacimiento from principal where idprincipal = "+ estud;
            try{
@@ -519,10 +530,10 @@ public class Principal extends javax.swing.JFrame {
                
            }catch(Exception ex){
                JOptionPane.showMessageDialog(null, ex);
-           }
            
            
            
+        }
         }
     }//GEN-LAST:event_TablaDatosMouseClicked
 
@@ -533,6 +544,8 @@ public class Principal extends javax.swing.JFrame {
             listar();
         }catch(java.lang.NullPointerException ex){
             JOptionPane.showMessageDialog(null, "Debe de seleccionar algo de la lista");
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_modificarActionPerformed
 
@@ -615,7 +628,7 @@ public class Principal extends javax.swing.JFrame {
         estado.setBackground(new Color (187,187,187));
         estado.setText("Inactivo");
     }
-    void modificar(){
+    void modificar() throws IOException{
         
         String ida = id.getText();
         String nom = nombre.getText();
@@ -656,12 +669,16 @@ public class Principal extends javax.swing.JFrame {
             estado="Inactivo";
         }
         
+        
         if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
             p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
             email.equals("")){
             
             JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
         }else{
+            Capacidad cup = new Capacidad();
+           
+           if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
             String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
                 "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
                 "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
@@ -674,6 +691,9 @@ public class Principal extends javax.swing.JFrame {
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, ex);
             }
+           }else{
+               JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
+           }
         } 
     }
     
@@ -741,7 +761,9 @@ public class Principal extends javax.swing.JFrame {
         }
     }
             
-    void agregar(){
+    void agregar() throws IOException{
+        
+        
         boolean condicion = false;
         String nom = nombre.getText();
         String ap1 = apellido1.getText();
@@ -764,9 +786,9 @@ public class Principal extends javax.swing.JFrame {
             estado="Inactivo";
         }
         
-        
-        
-        
+        Capacidad cup = new Capacidad();
+           
+        if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
         
         try{
             Date nacimiento = fecha.getDate();
@@ -810,7 +832,9 @@ public class Principal extends javax.swing.JFrame {
         }catch(java.lang.NullPointerException ex){
             condicion = true;
         }
-        
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya no hay becas para este pais");
+        }
         
         
         
@@ -819,7 +843,7 @@ public class Principal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaDatos;
+    public javax.swing.JTable TablaDatos;
     private javax.swing.JButton agregar;
     private javax.swing.JTextField apellido1;
     private javax.swing.JTextField apellido2;
