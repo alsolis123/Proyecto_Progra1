@@ -77,7 +77,6 @@ public class Principal extends javax.swing.JFrame {
         telefono = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        carrera = new javax.swing.JTextField();
         observacion = new javax.swing.JTextField();
         agregar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
@@ -88,6 +87,7 @@ public class Principal extends javax.swing.JFrame {
         edadSort = new javax.swing.JButton();
         idSort = new javax.swing.JButton();
         nombreSort = new javax.swing.JButton();
+        carrera = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDatos = new javax.swing.JTable();
 
@@ -300,6 +300,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una carrera", "Administracion de Empresas", "Animacion", "Arquitectura", "Artes Plasticas", "Biologia", "Comercio Internacional", "Contaduria Publica", "Contaduria Publica", "Derecho", "Diseño Grafico", "Economia", "Enseñanza del Ingles", "Enseñanza preescolar", "Farmacia", "Filosofia", "Fisica teorica fundamental", "Fotografia", "Ingeneria Electromecanica", "Ingeneria Industrial", "Ingenieria Civil", "Ingenieria de alimentos", "Ingenieria del Software", "Ingenieria Electrica", "Ingenieria en Sistemas de Informacion", "Ingenieria Mecatronica", "Matematica teorica fundamental", "Medicina y Cirugia", "Mercadeo", "Odontologia", "Periodismo y Comunicacion", "Psicopedagogia", "Publicidad", "Relaciones Internacionales", "Sociologia", "Terapia Fisica", "Turismo" }));
+        carrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carreraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -340,9 +347,9 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel16)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(68, 68, 68)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(59, 59, 59)
                                         .addComponent(jLabel15)
                                         .addGap(0, 649, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -512,7 +519,7 @@ public class Principal extends javax.swing.JFrame {
                     apellido1.setText(apel1);
                     apellido2.setText(apel2);
                     identificacion.setText(iden);
-                    carrera.setText(carrer);
+                    carrera.setSelectedItem(carrer);
                     estado_civil.setSelectedItem(civil);
                     pais.setSelectedItem(origen);
                     direccion.setText(direcc);
@@ -575,6 +582,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edadSortActionPerformed
 
+    private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carreraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -615,7 +626,7 @@ public class Principal extends javax.swing.JFrame {
         apellido1.setText("");
         apellido2.setText("");
         identificacion.setText("");
-        carrera.setText("");
+        carrera.setSelectedItem("Seleccione una carrera");
         estado_civil.setSelectedItem("Sin especificar");
         pais.setSelectedItem("Seleccione uno");
         direccion.setText("");
@@ -635,7 +646,7 @@ public class Principal extends javax.swing.JFrame {
         String ap1 = apellido1.getText();
         String ap2 = apellido2.getText();
         String id = identificacion.getText();
-        String carrer = carrera.getText();
+        String carrer = (String)carrera.getSelectedItem();
         String civil = (String)estado_civil.getSelectedItem();
         String p_origen = (String)pais.getSelectedItem();
         String direc = direccion.getText();
@@ -769,7 +780,7 @@ public class Principal extends javax.swing.JFrame {
         String ap1 = apellido1.getText();
         String ap2 = apellido2.getText();
         String id = identificacion.getText();
-        String carrer = carrera.getText();
+        String carrer = (String)carrera.getSelectedItem();
         String civil = (String)estado_civil.getSelectedItem();
         String p_origen = (String)pais.getSelectedItem();
         String direc = direccion.getText();
@@ -848,7 +859,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField apellido1;
     private javax.swing.JTextField apellido2;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField carrera;
+    private javax.swing.JComboBox<String> carrera;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;
     private javax.swing.JButton edadSort;
