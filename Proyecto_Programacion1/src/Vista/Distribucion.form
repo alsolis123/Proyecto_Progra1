@@ -58,10 +58,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="base_datos" min="-2" pref="131" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                  <Component id="listado_paises" min="-2" pref="131" max="-2" attributes="0"/>
-                  <EmptySpace pref="91" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="statistics" max="32767" attributes="0"/>
+                      <Component id="base_datos" pref="131" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="listado_paises" max="32767" attributes="0"/>
+                      <Component id="c_contraseña" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="75" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -73,7 +79,12 @@
                       <Component id="base_datos" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="listado_paises" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="220" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="statistics" pref="45" max="32767" attributes="0"/>
+                      <Component id="c_contraseña" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="127" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,6 +104,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listado_paisesActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="statistics">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estadisticas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statisticsActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="c_contrase&#xf1;a">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cambiar contrase&#xf1;a"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="c_contrase&#xf1;aActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
