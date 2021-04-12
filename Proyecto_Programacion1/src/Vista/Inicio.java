@@ -32,6 +32,13 @@ public class Inicio extends javax.swing.JFrame {
         registrarse.setBorderPainted(false);
         
         
+        in_btn_cambiar.setOpaque(false);
+        in_btn_cambiar.setContentAreaFilled(false);
+        in_btn_cambiar.setBorderPainted(false);
+        
+        salir.setOpaque(false);
+        salir.setContentAreaFilled(false);
+        salir.setBorderPainted(false);
         
         
         
@@ -48,11 +55,14 @@ public class Inicio extends javax.swing.JFrame {
         contraseña = new javax.swing.JPasswordField();
         usuario = new javax.swing.JTextField();
         ingresar = new javax.swing.JButton();
+        in_btn_cambiar = new javax.swing.JButton();
+        salir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Frame 1 (1).png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         registrarse.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +73,7 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 90, 20));
 
         contraseña.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        contraseña.setForeground(new java.awt.Color(237, 240, 248));
         contraseña.setBorder(null);
         getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 240, 40));
 
@@ -79,6 +90,20 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 150, 50));
+
+        in_btn_cambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                in_btn_cambiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(in_btn_cambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 130, 20));
+
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 50, 40));
 
         jLabel3.setForeground(new java.awt.Color(237, 240, 248));
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Frame 1 (1).png")); // NOI18N
@@ -118,6 +143,16 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ingresarActionPerformed
 
+    private void in_btn_cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in_btn_cambiarActionPerformed
+        Cambiar_contraseña change = new Cambiar_contraseña();
+        change.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_in_btn_cambiarActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_salirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -155,10 +190,12 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contraseña;
+    private javax.swing.JButton in_btn_cambiar;
     private javax.swing.JButton ingresar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton registrarse;
+    private javax.swing.JButton salir;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
