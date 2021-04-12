@@ -26,6 +26,27 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
     public Cambiar_contraseña() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        //        Textfield transparentes
+        usuario.setBackground(new java.awt.Color(0,0,0,1));
+        c_actual.setBackground(new java.awt.Color(0,0,0,1));
+        c_nueva.setBackground(new java.awt.Color(0,0,0,1));
+        
+        
+//        Trasnparencia botones
+
+        back.setOpaque(false);
+        back.setContentAreaFilled(false);
+        back.setBorderPainted(false);
+        
+        cambiar.setOpaque(false);
+        cambiar.setContentAreaFilled(false);
+        cambiar.setBorderPainted(false);
+        
+        exit.setOpaque(false);
+        exit.setContentAreaFilled(false);
+        exit.setBorderPainted(false);
+        
     }
 
     /**
@@ -37,98 +58,64 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
         cambiar = new javax.swing.JButton();
+        usuario = new javax.swing.JTextField();
         c_actual = new javax.swing.JPasswordField();
         c_nueva = new javax.swing.JPasswordField();
-        usuario = new javax.swing.JTextField();
+        exit = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Usuario");
-
-        jLabel2.setText("Contraseña Actual");
-
-        jLabel3.setText("Nueva contraseña");
-
-        back.setText("Atras");
+        back.setBorder(null);
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
             }
         });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 60, 30));
 
-        cambiar.setText("Cambiar");
+        cambiar.setBorder(null);
         cambiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cambiarActionPerformed(evt);
             }
         });
+        getContentPane().add(cambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 130, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(back))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cambiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(c_actual, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(c_nueva, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(usuario))
-                                .addGap(3, 3, 3)))))
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(c_actual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(c_nueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(cambiar)
-                .addGap(23, 23, 23)
-                .addComponent(back)
-                .addGap(17, 17, 17))
-        );
+        usuario.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        usuario.setForeground(new java.awt.Color(77, 92, 126));
+        usuario.setBorder(null);
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 122, 260, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        c_actual.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        c_actual.setForeground(new java.awt.Color(77, 92, 126));
+        c_actual.setBorder(null);
+        getContentPane().add(c_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 173, 160, 30));
+
+        c_nueva.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        c_nueva.setForeground(new java.awt.Color(77, 92, 126));
+        c_nueva.setBorder(null);
+        c_nueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_nuevaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(c_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 222, 160, 30));
+
+        exit.setBorder(null);
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 2, 50, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Cambiar contraseña.png")); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,6 +129,14 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         ini.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void c_nuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_nuevaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_nuevaActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,10 +237,8 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
     private javax.swing.JPasswordField c_actual;
     private javax.swing.JPasswordField c_nueva;
     private javax.swing.JButton cambiar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

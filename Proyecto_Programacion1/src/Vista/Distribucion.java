@@ -26,11 +26,27 @@ public class Distribucion extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
-        base_datos = new javax.swing.JButton();
-        listado_paises = new javax.swing.JButton();
-        statistics = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        base_datos = new javax.swing.JMenuItem();
+        listado_paises = new javax.swing.JMenuItem();
+        statistics = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 451, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+
+        jMenu1.setText("Aplicaciones");
 
         base_datos.setText("Base de datos");
         base_datos.addActionListener(new java.awt.event.ActionListener() {
@@ -38,13 +54,15 @@ public class Distribucion extends javax.swing.JFrame {
                 base_datosActionPerformed(evt);
             }
         });
+        jMenu1.add(base_datos);
 
-        listado_paises.setText("Listado de Paises");
+        listado_paises.setText("Listado de paises");
         listado_paises.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listado_paisesActionPerformed(evt);
             }
         });
+        jMenu1.add(listado_paises);
 
         statistics.setText("Estadisticas");
         statistics.addActionListener(new java.awt.event.ActionListener() {
@@ -52,31 +70,14 @@ public class Distribucion extends javax.swing.JFrame {
                 statisticsActionPerformed(evt);
             }
         });
+        jMenu1.add(statistics);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(statistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(base_datos, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
-                .addComponent(listado_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(base_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listado_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(statistics, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Acerca nosotros");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,8 +101,8 @@ public class Distribucion extends javax.swing.JFrame {
 
     private void listado_paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listado_paisesActionPerformed
         try{
-        Lista_paises lista = new Lista_paises();
-        lista.setVisible(true);
+        Lista_paises list = new Lista_paises();
+        list.setVisible(true);
         this.setVisible(false);
         }catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
@@ -109,9 +110,11 @@ public class Distribucion extends javax.swing.JFrame {
     }//GEN-LAST:event_listado_paisesActionPerformed
 
     private void statisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsActionPerformed
-        Estadisticas stat = new Estadisticas();
-        stat.setVisible(true);
+        
+        Estadisticas estad = new Estadisticas();
+        estad.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_statisticsActionPerformed
 
     /**
@@ -150,12 +153,15 @@ public class Distribucion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton base_datos;
+    private javax.swing.JMenuItem base_datos;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton listado_paises;
-    private javax.swing.JButton statistics;
+    private javax.swing.JMenuItem listado_paises;
+    private javax.swing.JMenuItem statistics;
     // End of variables declaration//GEN-END:variables
 }
