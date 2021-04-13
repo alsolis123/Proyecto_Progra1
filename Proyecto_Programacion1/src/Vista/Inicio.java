@@ -2,11 +2,13 @@
 package Vista;
 
 import Clases.Persona;
+import com.sun.awt.AWTUtilities;
 import javax.swing.JOptionPane;
 
 
 public class Inicio extends javax.swing.JFrame {
     public String usuario_inicio;
+    public int x,y;
     
     public Inicio() {
         initComponents();
@@ -40,6 +42,9 @@ public class Inicio extends javax.swing.JFrame {
         salir.setContentAreaFilled(false);
         salir.setBorderPainted(false);
         
+        //Darle movilidad a la ventana
+        
+        AWTUtilities.setWindowOpaque(this, false);
         
         
         
@@ -54,9 +59,10 @@ public class Inicio extends javax.swing.JFrame {
         registrarse = new javax.swing.JButton();
         contraseña = new javax.swing.JPasswordField();
         usuario = new javax.swing.JTextField();
+        salir = new javax.swing.JButton();
         ingresar = new javax.swing.JButton();
         in_btn_cambiar = new javax.swing.JButton();
-        salir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Frame 1 (1).png"))); // NOI18N
@@ -84,6 +90,13 @@ public class Inicio extends javax.swing.JFrame {
         usuario.setSelectionColor(new java.awt.Color(237, 240, 248));
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 240, 40));
 
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 50, 40));
+
         ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarActionPerformed(evt);
@@ -96,14 +109,20 @@ public class Inicio extends javax.swing.JFrame {
                 in_btn_cambiarActionPerformed(evt);
             }
         });
-        getContentPane().add(in_btn_cambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 130, 20));
+        getContentPane().add(in_btn_cambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, 140, 20));
 
-        salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
             }
         });
-        getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 50, 40));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, -4, 410, 550));
 
         jLabel3.setForeground(new java.awt.Color(237, 240, 248));
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Frame 1 (1).png")); // NOI18N
@@ -153,6 +172,16 @@ public class Inicio extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+       this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+ 
+    }//GEN-LAST:event_jLabel1MouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -192,6 +221,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JButton in_btn_cambiar;
     private javax.swing.JButton ingresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton registrarse;
