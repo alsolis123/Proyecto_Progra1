@@ -131,9 +131,7 @@ public class Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void GetUsuario(){
-        
-    }
+    
     
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
         Creacion_usuario registrarse = new Creacion_usuario();
