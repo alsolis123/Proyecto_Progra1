@@ -319,13 +319,13 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, 40, 40));
 
-        filtrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Edad", "Identificacion", "Nombre" }));
+        filtrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id de Registro", "Fecha Nacimiento", "Identificacion", "Nombre" }));
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtrarActionPerformed(evt);
             }
         });
-        getContentPane().add(filtrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, 100, -1));
+        getContentPane().add(filtrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 350, 100, -1));
 
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -456,6 +456,8 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TablaDatosMouseClicked
 
+    
+    
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         try{
             modificar();
@@ -505,6 +507,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
+        limpiar();
+        listar2();
+        
+        
         
     }//GEN-LAST:event_filtrarActionPerformed
 
@@ -663,6 +669,61 @@ public class Principal extends javax.swing.JFrame {
     void listar(){
         
         String sql = "Select * from principal";
+        try{
+        cn= con.getConnection();
+        st= cn.createStatement();
+        rs= st.executeQuery(sql); 
+        Object[]estudiante = new Object[16];
+        model = (DefaultTableModel) TablaDatos.getModel();
+        while(rs.next()){
+            
+            estudiante[0]=rs.getString("idprincipal");
+            estudiante[1]=rs.getString("nombre");
+            estudiante[2]=rs.getString("primer_apellido");
+            estudiante[3]=rs.getString("segundo_apellido");
+            estudiante[4]=rs.getString("identificacion");
+            estudiante[5]=rs.getString("carrera");
+            estudiante[6]=rs.getString("estado_civil");
+            estudiante[7]=rs.getString("pais_de_origen");
+            estudiante[8]=rs.getString("direccion");
+            estudiante[9]=rs.getString("edad");
+            estudiante[10]=rs.getString("universidad");
+            estudiante[11]=rs.getString("telefono");
+            estudiante[12]=rs.getString("correo");
+            estudiante[13]=rs.getString("estado");
+            estudiante[14]=rs.getString("observaciones");
+            model.addRow(estudiante);
+        }
+        TablaDatos.setModel(model);
+        
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+            
+        }
+        
+    }
+    void listar2(){
+        String sentencia="";
+        if(filtrar.getSelectedItem().equals("Id de Registro")){
+            sentencia = "Select * from principal order by idprincipal desc";
+        
+        
+        }else if(filtrar.getSelectedItem().equals("Fecha Nacimiento")){
+            sentencia = "Select * from principal order by fecha_de_nacimiento desc";
+        
+
+        }else if(filtrar.getSelectedItem().equals("Identificacion")){
+            sentencia = "Select * from principal order by identificacion desc";
+        
+        
+        }else{
+           sentencia = "Select * from principal order by nombre asc";
+        
+        
+        }
+        
+        String sql = sentencia;
+        
         try{
         cn= con.getConnection();
         st= cn.createStatement();
