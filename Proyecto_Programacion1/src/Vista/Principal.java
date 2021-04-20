@@ -3,6 +3,7 @@ package Vista;
 
 import Clases.Capacidad;
 import Configuracion.Conexion;
+import com.sun.awt.AWTUtilities;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.awt.Color;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class Principal extends javax.swing.JFrame {
     Statement st;
     ResultSet rs;
     DefaultTableModel model;
-    
+    public int x,y;
     
     
     
@@ -32,6 +33,57 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         listar();
+        estado.setBackground(new Color (77,92,126));
+        
+        //Darle movilidad a la ventana
+        
+        AWTUtilities.setWindowOpaque(this, false);
+        
+        //        Textfield transparentes
+        nombre.setBackground(new java.awt.Color(0,0,0,1));
+        apellido1.setBackground(new java.awt.Color(0,0,0,1));
+        apellido2.setBackground(new java.awt.Color(0,0,0,1));
+        identificacion.setBackground(new java.awt.Color(0,0,0,1));
+        telefono.setBackground(new java.awt.Color(0,0,0,1));
+        correo.setBackground(new java.awt.Color(0,0,0,1));
+        
+        direccion.setBackground(new java.awt.Color(0,0,0,1));
+        id.setBackground(new java.awt.Color(0,0,0,1));
+        universidad.setBackground(new java.awt.Color(0,0,0,1));
+        observacion.setBackground(new java.awt.Color(0,0,0,1));
+        
+        //        Trasnparencia botones
+
+        exit.setOpaque(false);
+        exit.setContentAreaFilled(false);
+        exit.setBorderPainted(false);
+        
+        back.setOpaque(false);
+        back.setContentAreaFilled(false);
+        back.setBorderPainted(false);
+        
+        //        Trasnparencia botones
+
+        agregar.setOpaque(false);
+        agregar.setContentAreaFilled(false);
+        agregar.setBorderPainted(false);
+        
+        eliminar.setOpaque(false);
+        eliminar.setContentAreaFilled(false);
+        eliminar.setBorderPainted(false);
+        
+        modificar.setOpaque(false);
+        modificar.setContentAreaFilled(false);
+        modificar.setBorderPainted(false);
+        
+        limpiar_caja.setOpaque(false);
+        limpiar_caja.setContentAreaFilled(false);
+        limpiar_caja.setBorderPainted(false);
+        
+        
+        
+        
+        
         
     }
 
@@ -48,49 +100,32 @@ public class Principal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         apellido1 = new javax.swing.JTextField();
         apellido2 = new javax.swing.JTextField();
         identificacion = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
         direccion = new javax.swing.JTextField();
         fecha = new com.toedter.calendar.JDateChooser();
-        jLabel13 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
         estado_civil = new javax.swing.JComboBox<>();
         pais = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDatos = new javax.swing.JTable();
+        back = new javax.swing.JButton();
         universidad = new javax.swing.JTextField();
         telefono = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         observacion = new javax.swing.JTextField();
         agregar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         estado = new javax.swing.JToggleButton();
         limpiar_caja = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
-        edadSort = new javax.swing.JButton();
-        idSort = new javax.swing.JButton();
-        nombreSort = new javax.swing.JButton();
         carrera = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaDatos = new javax.swing.JTable();
-        back = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
+        filtrar = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -106,296 +141,69 @@ public class Principal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("Nombre");
-
-        jLabel3.setText("Primer Apellido");
-
-        jLabel4.setText("Segundo Apellido");
-
-        jLabel5.setText("Identificacion");
-
-        jLabel6.setText("Pais de Origen");
-
-        jLabel7.setText("Fecha de Nacimiento");
-
-        jLabel9.setText("Direccion");
-
-        jLabel12.setText("Estado Civil");
-
+        apellido1.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        apellido1.setBorder(null);
         apellido1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apellido1ActionPerformed(evt);
             }
         });
+        getContentPane().add(apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 94, 110, 30));
 
+        apellido2.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        apellido2.setBorder(null);
         apellido2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apellido2ActionPerformed(evt);
             }
         });
+        getContentPane().add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 94, 110, 30));
 
+        identificacion.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        identificacion.setBorder(null);
         identificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 identificacionActionPerformed(evt);
             }
         });
+        getContentPane().add(identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1048, 94, 110, 30));
 
+        nombre.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        nombre.setBorder(null);
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
             }
         });
+        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 94, 110, 30));
+        nombre.getAccessibleContext().setAccessibleDescription("");
 
-        jLabel13.setText("Numero de estudiante");
+        direccion.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        direccion.setBorder(null);
+        getContentPane().add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1102, 158, 193, 30));
 
+        fecha.setToolTipText("");
+        fecha.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 158, 140, -1));
+
+        id.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        id.setBorder(null);
         id.setEnabled(false);
+        id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idActionPerformed(evt);
+            }
+        });
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(1101, 230, 80, 20));
 
         estado_civil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sin especificar", "Soltero (a)", "Casado (a)", "Union Libre", "Divorciado (a)", "Viudo (a)" }));
+        getContentPane().add(estado_civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 226, 119, -1));
 
         pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno", "Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "The Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bonaire", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "United States Minor Outlying Islands", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "The Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Ivory Coast", "Iran", "Iraq", "Republic of Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Republic of Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Federated States of Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Kosovo", "Réunion", "Romania", "Russia", "Rwanda", "Saint Barthélemy", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "East Timor", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe" }));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
-                .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(apellido1)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12))
-                .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(estado_civil, javax.swing.GroupLayout.Alignment.LEADING, 0, 119, Short.MAX_VALUE)
-                            .addComponent(pais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(direccion, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel7)
-                        .addComponent(apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel9)
-                    .addComponent(apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel12)
-                    .addComponent(identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estado_civil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jLabel8.setText("Universidad");
-
-        jLabel10.setText("Numero de telefono");
-
-        jLabel11.setText("Correo Electronico");
-
-        jLabel14.setText("Observaciones Adicionales");
-
-        jLabel15.setText("Estado");
-
-        jLabel16.setText("Carrera");
-
-        agregar.setText("Agregar Estudiante");
-        agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
-            }
-        });
-
-        eliminar.setText("Eliminar Estudiante");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
-            }
-        });
-
-        modificar.setText("Modificar Estudiante");
-        modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarActionPerformed(evt);
-            }
-        });
-
-        estado.setText("Inactivo");
-        estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estadoActionPerformed(evt);
-            }
-        });
-
-        limpiar_caja.setText("Limpiar cajas");
-        limpiar_caja.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limpiar_cajaActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setText("Ordenar por:");
-
-        edadSort.setText("Edad");
-        edadSort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edadSortActionPerformed(evt);
-            }
-        });
-
-        idSort.setText("Identificacion");
-        idSort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idSortActionPerformed(evt);
-            }
-        });
-
-        nombreSort.setText("Nombre");
-        nombreSort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreSortActionPerformed(evt);
-            }
-        });
-
-        carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una carrera", "Administracion de Empresas", "Animacion", "Arquitectura", "Artes Plasticas", "Biologia", "Comercio Internacional", "Contaduria Publica", "Contaduria Publica", "Derecho", "Diseño Grafico", "Economia", "Enseñanza del Ingles", "Enseñanza preescolar", "Farmacia", "Filosofia", "Fisica teorica fundamental", "Fotografia", "Ingeneria Electromecanica", "Ingeneria Industrial", "Ingenieria Civil", "Ingenieria de alimentos", "Ingenieria del Software", "Ingenieria Electrica", "Ingenieria en Sistemas de Informacion", "Ingenieria Mecatronica", "Matematica teorica fundamental", "Medicina y Cirugia", "Mercadeo", "Odontologia", "Periodismo y Comunicacion", "Psicopedagogia", "Publicidad", "Relaciones Internacionales", "Sociologia", "Terapia Fisica", "Turismo" }));
-        carrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carreraActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(modificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(limpiar_caja, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel17)
-                        .addGap(14, 14, 14)
-                        .addComponent(nombreSort, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(idSort, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(edadSort, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(universidad)
-                            .addComponent(correo))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(carrera, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(59, 59, 59)
-                                        .addComponent(jLabel15)
-                                        .addGap(0, 649, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(observacion)))
-                                .addContainerGap())
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(403, 403, 403)
-                                .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(universidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel16)
-                        .addComponent(carrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(observacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar)
-                    .addComponent(eliminar)
-                    .addComponent(modificar)
-                    .addComponent(limpiar_caja)
-                    .addComponent(jLabel17)
-                    .addComponent(edadSort)
-                    .addComponent(idSort)
-                    .addComponent(nombreSort))
-                .addContainerGap())
-        );
+        getContentPane().add(pais, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 226, 117, -1));
 
         TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -411,38 +219,128 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(TablaDatos);
+        if (TablaDatos.getColumnModel().getColumnCount() > 0) {
+            TablaDatos.getColumnModel().getColumn(0).setHeaderValue("Id de Registro");
+            TablaDatos.getColumnModel().getColumn(1).setHeaderValue("Nombre");
+            TablaDatos.getColumnModel().getColumn(2).setHeaderValue("Primer Apellido");
+            TablaDatos.getColumnModel().getColumn(3).setResizable(false);
+            TablaDatos.getColumnModel().getColumn(3).setHeaderValue("Segundo Apellido");
+            TablaDatos.getColumnModel().getColumn(4).setHeaderValue("Identificacion");
+            TablaDatos.getColumnModel().getColumn(5).setHeaderValue("Carrera");
+            TablaDatos.getColumnModel().getColumn(6).setHeaderValue("Estado Civil");
+            TablaDatos.getColumnModel().getColumn(7).setHeaderValue("Pais de Origen");
+            TablaDatos.getColumnModel().getColumn(8).setHeaderValue("Direccion");
+            TablaDatos.getColumnModel().getColumn(9).setHeaderValue("Edad");
+            TablaDatos.getColumnModel().getColumn(10).setHeaderValue("Universidad");
+            TablaDatos.getColumnModel().getColumn(11).setHeaderValue("Telefono");
+            TablaDatos.getColumnModel().getColumn(12).setHeaderValue("Correo");
+            TablaDatos.getColumnModel().getColumn(13).setHeaderValue("Estado");
+            TablaDatos.getColumnModel().getColumn(14).setHeaderValue("Observaciones");
+        }
 
-        back.setText("Atras");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 1280, 210));
+
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
             }
         });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 600, 50, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(back)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(back)
-                .addGap(0, 12, Short.MAX_VALUE))
-        );
+        universidad.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        universidad.setBorder(null);
+        universidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                universidadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(universidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 287, 110, 30));
+
+        telefono.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        telefono.setBorder(null);
+        getContentPane().add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 158, 110, 30));
+
+        correo.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        correo.setBorder(null);
+        getContentPane().add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 158, 110, 30));
+
+        observacion.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        observacion.setBorder(null);
+        getContentPane().add(observacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 287, 289, 30));
+
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 348, 132, 30));
+
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 348, 140, 30));
+
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 348, 132, 30));
+
+        estado.setText("Inactivo");
+        estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 333, 87, -1));
+
+        limpiar_caja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiar_cajaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(limpiar_caja, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 347, 140, 30));
+
+        carrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una carrera", "Administracion de Empresas", "Animacion", "Arquitectura", "Artes Plasticas", "Biologia", "Comercio Internacional", "Contaduria Publica", "Contaduria Publica", "Derecho", "Diseño Grafico", "Economia", "Enseñanza del Ingles", "Enseñanza preescolar", "Farmacia", "Filosofia", "Fisica teorica fundamental", "Fotografia", "Ingeneria Electromecanica", "Ingeneria Industrial", "Ingenieria Civil", "Ingenieria de alimentos", "Ingenieria del Software", "Ingenieria Electrica", "Ingenieria en Sistemas de Informacion", "Ingenieria Mecatronica", "Matematica teorica fundamental", "Medicina y Cirugia", "Mercadeo", "Odontologia", "Periodismo y Comunicacion", "Psicopedagogia", "Publicidad", "Relaciones Internacionales", "Sociologia", "Terapia Fisica", "Turismo" }));
+        carrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carreraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 226, 240, -1));
+
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 10, 40, 40));
+
+        filtrar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id de Registro", "Fecha Nacimiento", "Identificacion", "Nombre" }));
+        filtrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(filtrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 350, 100, -1));
+
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 1340, 650));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Base de Datos.png")); // NOI18N
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -558,6 +456,8 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TablaDatosMouseClicked
 
+    
+    
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         try{
             modificar();
@@ -579,22 +479,10 @@ public class Principal extends javax.swing.JFrame {
             estado.setBackground(new Color(82, 146, 6));
             estado.setText("Activo");
         }else{
-            estado.setBackground(new Color (187,187,187));
+            estado.setBackground(new Color (77,92,126));
             estado.setText("Inactivo");
         }
     }//GEN-LAST:event_estadoActionPerformed
-
-    private void nombreSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreSortActionPerformed
-        
-    }//GEN-LAST:event_nombreSortActionPerformed
-
-    private void idSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idSortActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idSortActionPerformed
-
-    private void edadSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edadSortActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edadSortActionPerformed
 
     private void carreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carreraActionPerformed
         // TODO add your handling code here:
@@ -605,6 +493,35 @@ public class Principal extends javax.swing.JFrame {
         dis.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void universidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_universidadActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
+
+    private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
+        limpiar();
+        listar2();
+        
+        
+        
+    }//GEN-LAST:event_filtrarActionPerformed
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jLabel2MouseDragged
 
     /**
      * @param args the command line arguments
@@ -661,71 +578,120 @@ public class Principal extends javax.swing.JFrame {
     }
     void modificar() throws IOException{
         
-        String ida = id.getText();
+//        Este vector es para poder investigar si en nombre y apellidos existe un numero de estos
+        char nums[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        
+        char temporal;
+        int largo, cont = 0;
+        boolean n=false, a1=false, a2=false;
+        
         String nom = nombre.getText();
         String ap1 = apellido1.getText();
         String ap2 = apellido2.getText();
-        String id = identificacion.getText();
-        String carrer = (String)carrera.getSelectedItem();
-        String civil = (String)estado_civil.getSelectedItem();
-        String p_origen = (String)pais.getSelectedItem();
-        String direc = direccion.getText();
-        String uni = universidad.getText();
-        String cell = telefono.getText();
-        String email = correo.getText();
-        boolean status = estado.isSelected();
-        String obs = observacion.getText();
         
-        //        Obtener fecha
-
-        Date nacimiento = fecha.getDate();
-        LocalDate ahora = LocalDate.now();
-        LocalDate fecha_nacimiento;
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaCadena = formato.format(nacimiento);
-        fecha_nacimiento = LocalDate.parse(fechaCadena, fmt);
-        Period periodo = Period.between(fecha_nacimiento, ahora);
-        String años = String.valueOf(periodo.getYears());
-        String meses = String.valueOf(periodo.getMonths());
-        String dias = String.valueOf(periodo.getDays());
-        String edad =  años + " años " + meses + " meses "+dias+" dias" ;
+        largo = nom.length()-1;
         
-        //Manejo de activos e inactivos
-        String estado;
-        
-        if(status==true){
-            estado ="Activo";
-        }else{
-            estado="Inactivo";
-        }
-        
-        
-        if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
-            p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
-            email.equals("")){
-            
-            JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
-        }else{
-            Capacidad cup = new Capacidad();
-           
-           if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
-            String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
-                "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
-                "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
-            try{
-                cn=con.getConnection();
-                st=cn.createStatement();
-                st.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "Registro actualizado");
-                vaciar_cajas();
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, ex);
+        while(largo>=0){
+            temporal=nom.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    n = true;
+                }
             }
-           }else{
-               JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
-           }
-        } 
+            cont++;
+            largo--;
+        }
+        largo = ap1.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap1.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a1 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        largo = ap2.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap2.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a2 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        if(n==true||a1==true||a2==true){
+            JOptionPane.showMessageDialog(null, "El nombre y los apellidos no pueden contener numeros");
+        }else{
+        
+            String ida = id.getText();
+            String id = identificacion.getText();
+            String carrer = (String)carrera.getSelectedItem();
+            String civil = (String)estado_civil.getSelectedItem();
+            String p_origen = (String)pais.getSelectedItem();
+            String direc = direccion.getText();
+            String uni = universidad.getText();
+            String cell = telefono.getText();
+            String email = correo.getText();
+            boolean status = estado.isSelected();
+            String obs = observacion.getText();
+
+            //        Obtener fecha
+
+            Date nacimiento = fecha.getDate();
+            LocalDate ahora = LocalDate.now();
+            LocalDate fecha_nacimiento;
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaCadena = formato.format(nacimiento);
+            fecha_nacimiento = LocalDate.parse(fechaCadena, fmt);
+            Period periodo = Period.between(fecha_nacimiento, ahora);
+            String años = String.valueOf(periodo.getYears());
+            String meses = String.valueOf(periodo.getMonths());
+            String dias = String.valueOf(periodo.getDays());
+            String edad =  años + " años " + meses + " meses "+dias+" dias" ;
+
+            //Manejo de activos e inactivos
+            String estado;
+
+            if(status==true){
+                estado ="Activo";
+            }else{
+                estado="Inactivo";
+            }
+
+
+            if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
+                p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
+                email.equals("")||carrer.equals("Seleccione una carrera")||civil.equals("Sin especificar")||p_origen.equals("Seleccione uno")){
+
+                JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
+            }else{
+                Capacidad cup = new Capacidad();
+
+               if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
+                String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
+                    "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
+                    "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
+                try{
+                    cn=con.getConnection();
+                    st=cn.createStatement();
+                    st.executeUpdate(sql);
+                    JOptionPane.showMessageDialog(null, "Registro actualizado");
+                    vaciar_cajas();
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+               }else{
+                   JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
+               }
+            }
+        }
     }
     
     void eliminar(){
@@ -785,6 +751,61 @@ public class Principal extends javax.swing.JFrame {
         }
         
     }
+    void listar2(){
+        String sentencia="";
+        if(filtrar.getSelectedItem().equals("Id de Registro")){
+            sentencia = "Select * from principal order by idprincipal desc";
+        
+        
+        }else if(filtrar.getSelectedItem().equals("Fecha Nacimiento")){
+            sentencia = "Select * from principal order by fecha_de_nacimiento desc";
+        
+
+        }else if(filtrar.getSelectedItem().equals("Identificacion")){
+            sentencia = "Select * from principal order by identificacion asc";
+        
+        
+        }else{
+           sentencia = "Select * from principal order by nombre asc";
+        
+        
+        }
+        
+        String sql = sentencia;
+        
+        try{
+        cn= con.getConnection();
+        st= cn.createStatement();
+        rs= st.executeQuery(sql); 
+        Object[]estudiante = new Object[16];
+        model = (DefaultTableModel) TablaDatos.getModel();
+        while(rs.next()){
+            
+            estudiante[0]=rs.getString("idprincipal");
+            estudiante[1]=rs.getString("nombre");
+            estudiante[2]=rs.getString("primer_apellido");
+            estudiante[3]=rs.getString("segundo_apellido");
+            estudiante[4]=rs.getString("identificacion");
+            estudiante[5]=rs.getString("carrera");
+            estudiante[6]=rs.getString("estado_civil");
+            estudiante[7]=rs.getString("pais_de_origen");
+            estudiante[8]=rs.getString("direccion");
+            estudiante[9]=rs.getString("edad");
+            estudiante[10]=rs.getString("universidad");
+            estudiante[11]=rs.getString("telefono");
+            estudiante[12]=rs.getString("correo");
+            estudiante[13]=rs.getString("estado");
+            estudiante[14]=rs.getString("observaciones");
+            model.addRow(estudiante);
+        }
+        TablaDatos.setModel(model);
+        
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+            
+        }
+        
+    }
     void limpiar(){
         for (int i = 0; i < TablaDatos.getRowCount(); i++) {
             model.removeRow(i);
@@ -793,12 +814,59 @@ public class Principal extends javax.swing.JFrame {
     }
             
     void agregar() throws IOException{
+//        Este vector es para poder investigar si en nombre y apellidos existe un numero de estos
+        char nums[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         
+        String nom, ap1, ap2;
+        char temporal;
+        int largo, cont = 0;
+        boolean n=false, a1=false, a2=false;
+        nom = nombre.getText();
+        ap1 = apellido1.getText();
+        ap2 = apellido2.getText();
+        
+        largo = nom.length()-1;
+        
+        while(largo>=0){
+            temporal=nom.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    n = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        largo = ap1.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap1.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a1 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        largo = ap2.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap2.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a2 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        if(n==true||a1==true||a2==true){
+            JOptionPane.showMessageDialog(null, "El nombre y los apellidos no pueden contener numeros");
+        }else{
         
         boolean condicion = false;
-        String nom = nombre.getText();
-        String ap1 = apellido1.getText();
-        String ap2 = apellido2.getText();
+         
         String id = identificacion.getText();
         String carrer = (String)carrera.getSelectedItem();
         String civil = (String)estado_civil.getSelectedItem();
@@ -838,7 +906,7 @@ public class Principal extends javax.swing.JFrame {
 
             if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
                     p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
-                    email.equals("")||condicion == true){
+                    email.equals("")||carrer.equals("Seleccione una carrera")||civil.equals("Sin especificar")||p_origen.equals("Seleccione uno")||condicion == true){
 
                 JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
                 condicion = false;
@@ -869,7 +937,7 @@ public class Principal extends javax.swing.JFrame {
         
         
         
-        
+        }
     }
     
 
@@ -883,40 +951,23 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> carrera;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;
-    private javax.swing.JButton edadSort;
     private javax.swing.JButton eliminar;
     private javax.swing.JToggleButton estado;
     private javax.swing.JComboBox<String> estado_civil;
+    private javax.swing.JButton exit;
     private com.toedter.calendar.JDateChooser fecha;
+    private javax.swing.JComboBox<String> filtrar;
     private javax.swing.JTextField id;
-    private javax.swing.JButton idSort;
     private javax.swing.JTextField identificacion;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limpiar_caja;
     private javax.swing.JButton modificar;
     private javax.swing.JTextField nombre;
-    private javax.swing.JButton nombreSort;
     private javax.swing.JTextField observacion;
     private javax.swing.JComboBox<String> pais;
     private javax.swing.JTextField telefono;

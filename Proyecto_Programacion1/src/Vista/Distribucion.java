@@ -1,16 +1,21 @@
 
 package Vista;
 
+import com.sun.awt.AWTUtilities;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
 
 public class Distribucion extends javax.swing.JFrame {
-
+    public int x,y;
     
     public Distribucion() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        //Darle movilidad a la ventana
+        
+        AWTUtilities.setWindowOpaque(this, false);
     }
 
     /**
@@ -25,13 +30,44 @@ public class Distribucion extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPopupMenu2 = new javax.swing.JPopupMenu();
-        jPanel1 = new javax.swing.JPanel();
-        base_datos = new javax.swing.JButton();
-        listado_paises = new javax.swing.JButton();
-        statistics = new javax.swing.JButton();
-        c_contraseña = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        base_datos = new javax.swing.JMenuItem();
+        listado_paises = new javax.swing.JMenuItem();
+        statistics = new javax.swing.JMenuItem();
+        nos = new javax.swing.JMenu();
+        nosotros = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        c_sesion = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 540, 390));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Distribucion.png")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jMenuBar1.setBackground(new java.awt.Color(196, 196, 196));
+        jMenuBar1.setForeground(new java.awt.Color(196, 196, 196));
+
+        jMenu1.setBackground(new java.awt.Color(196, 196, 196));
+        jMenu1.setForeground(new java.awt.Color(77, 92, 126));
+        jMenu1.setText("Aplicaciones");
 
         base_datos.setText("Base de datos");
         base_datos.addActionListener(new java.awt.event.ActionListener() {
@@ -39,13 +75,15 @@ public class Distribucion extends javax.swing.JFrame {
                 base_datosActionPerformed(evt);
             }
         });
+        jMenu1.add(base_datos);
 
-        listado_paises.setText("Listado de Paises");
+        listado_paises.setText("Listado de paises");
         listado_paises.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listado_paisesActionPerformed(evt);
             }
         });
+        jMenu1.add(listado_paises);
 
         statistics.setText("Estadisticas");
         statistics.addActionListener(new java.awt.event.ActionListener() {
@@ -53,53 +91,57 @@ public class Distribucion extends javax.swing.JFrame {
                 statisticsActionPerformed(evt);
             }
         });
+        jMenu1.add(statistics);
 
-        c_contraseña.setText("Cambiar contraseña");
-        c_contraseña.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(jMenu1);
+
+        nos.setBackground(new java.awt.Color(196, 196, 196));
+        nos.setForeground(new java.awt.Color(77, 92, 126));
+        nos.setText("Acerca nosotros");
+        nos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c_contraseñaActionPerformed(evt);
+                nosActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(statistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(base_datos, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(listado_paises, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(c_contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(base_datos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listado_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(statistics, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(c_contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
+        nosotros.setText("Acerca nosotros");
+        nosotros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nosotrosActionPerformed(evt);
+            }
+        });
+        nos.add(nosotros);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jMenuBar1.add(nos);
+
+        jMenu3.setBackground(new java.awt.Color(196, 196, 196));
+        jMenu3.setForeground(new java.awt.Color(77, 92, 126));
+        jMenu3.setText("Logout");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
+
+        c_sesion.setText("Cerrar Sesion");
+        c_sesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c_sesionActionPerformed(evt);
+            }
+        });
+        jMenu3.add(c_sesion);
+
+        exit.setText("Salir");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jMenu3.add(exit);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,8 +154,8 @@ public class Distribucion extends javax.swing.JFrame {
 
     private void listado_paisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listado_paisesActionPerformed
         try{
-        Lista_paises lista = new Lista_paises();
-        lista.setVisible(true);
+        Lista_paises list = new Lista_paises();
+        list.setVisible(true);
         this.setVisible(false);
         }catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
@@ -121,16 +163,45 @@ public class Distribucion extends javax.swing.JFrame {
     }//GEN-LAST:event_listado_paisesActionPerformed
 
     private void statisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsActionPerformed
-        Estadisticas stat = new Estadisticas();
-        stat.setVisible(true);
+        
+        Estadisticas estad = new Estadisticas();
+        estad.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_statisticsActionPerformed
 
-    private void c_contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_contraseñaActionPerformed
-        Cambiar_contraseña change = new Cambiar_contraseña();
-        change.setVisible(true);
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void nosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nosActionPerformed
+    
+    }//GEN-LAST:event_nosActionPerformed
+
+    private void nosotrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nosotrosActionPerformed
+        Acerca_nosotros nos = new Acerca_nosotros();
+        nos.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_c_contraseñaActionPerformed
+    }//GEN-LAST:event_nosotrosActionPerformed
+
+    private void c_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_sesionActionPerformed
+        Inicio ini= new Inicio();
+        ini.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_c_sesionActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jLabel2MouseDragged
 
     /**
      * @param args the command line arguments
@@ -168,13 +239,20 @@ public class Distribucion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton base_datos;
-    private javax.swing.JButton c_contraseña;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem base_datos;
+    private javax.swing.JMenuItem c_sesion;
+    private javax.swing.JMenuItem exit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton listado_paises;
-    private javax.swing.JButton statistics;
+    private javax.swing.JMenuItem listado_paises;
+    private javax.swing.JMenu nos;
+    private javax.swing.JMenuItem nosotros;
+    private javax.swing.JMenuItem statistics;
     // End of variables declaration//GEN-END:variables
 }

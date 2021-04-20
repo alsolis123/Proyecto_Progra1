@@ -2,9 +2,12 @@
 package Vista;
 
 import Clases.Capacidad;
+import com.sun.awt.AWTUtilities;
+import com.sun.prism.paint.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,12 +15,49 @@ import javax.swing.table.DefaultTableModel;
  * @author alsolis
  */
 public class Estadisticas extends javax.swing.JFrame {
-
+    public int x,y;
     
     public Estadisticas() {
         initComponents();
         setLocationRelativeTo(null);
         cantidad_total();
+        
+        //Darle movilidad a la ventana
+        
+        AWTUtilities.setWindowOpaque(this, false);
+        
+        
+        //        Textfield transparentes
+        lista_paises.setBackground(new java.awt.Color(0,0,0,1));
+        lista_carreras.setBackground(new java.awt.Color(0,0,0,1));
+        pais_ben.setBackground(new java.awt.Color(0,0,0,1));
+        lista_total.setBackground(new java.awt.Color(0,0,0,1));
+        
+        
+        
+        
+        //        Trasnparencia botones
+
+        exit.setOpaque(false);
+        exit.setContentAreaFilled(false);
+        exit.setBorderPainted(false);
+        
+        back.setOpaque(false);
+        back.setContentAreaFilled(false);
+        back.setBorderPainted(false);
+        
+//        Centrar texto
+
+        lista_paises.setHorizontalAlignment(JTextField.CENTER);
+        lista_carreras.setHorizontalAlignment(JTextField.CENTER);
+        pais_ben.setHorizontalAlignment(JTextField.CENTER);
+        lista_total.setHorizontalAlignment(JTextField.CENTER);
+
+
+        
+        
+        
+        
     }
 
     /**
@@ -29,28 +69,31 @@ public class Estadisticas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         lista_total = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         paises = new javax.swing.JComboBox<>();
         lista_carreras = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         carreras = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         lista_paises = new javax.swing.JTextField();
         back = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         pais_ben = new javax.swing.JTextField();
+        exit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lista_total.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
+        lista_total.setBorder(null);
         lista_total.setEnabled(false);
-
-        jLabel1.setText("Beneficiarios en total");
-
-        jLabel2.setText("Pais de origen");
+        lista_total.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        lista_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lista_totalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(lista_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 483, 110, 40));
 
         paises.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione uno", "Afghanistan", "Åland Islands", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "The Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bonaire", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "United States Minor Outlying Islands", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Republic of the Congo", "Democratic Republic of the Congo", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Curaçao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern and Antarctic Lands", "Gabon", "The Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Holy See", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Ivory Coast", "Iran", "Iraq", "Republic of Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Republic of Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Federated States of Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Kosovo", "Réunion", "Romania", "Russia", "Rwanda", "Saint Barthélemy", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "São Tomé and Príncipe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "East Timor", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe" }));
         paises.addActionListener(new java.awt.event.ActionListener() {
@@ -58,15 +101,19 @@ public class Estadisticas extends javax.swing.JFrame {
                 paisesActionPerformed(evt);
             }
         });
+        getContentPane().add(paises, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 180, 50));
 
+        lista_carreras.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
+        lista_carreras.setForeground(new java.awt.Color(0, 0, 0));
+        lista_carreras.setBorder(null);
+        lista_carreras.setCaretColor(new java.awt.Color(0, 0, 0));
         lista_carreras.setEnabled(false);
         lista_carreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lista_carrerasActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Cantidad de personas por este pais");
+        getContentPane().add(lista_carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(572, 304, 110, 40));
 
         carreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una carrera", "Administracion de Empresas", "Animacion", "Arquitectura", "Artes Plasticas", "Biologia", "Comercio Internacional", "Contaduria Publica", "Contaduria Publica", "Derecho", "Diseño Grafico", "Economia", "Enseñanza del Ingles", "Enseñanza preescolar", "Farmacia", "Filosofia", "Fisica teorica fundamental", "Fotografia", "Ingeneria Electromecanica", "Ingeneria Industrial", "Ingenieria Civil", "Ingenieria de alimentos", "Ingenieria del Software", "Ingenieria Electrica", "Ingenieria en Sistemas de Informacion", "Ingenieria Mecatronica", "Matematica teorica fundamental", "Medicina y Cirugia", "Mercadeo", "Odontologia", "Periodismo y Comunicacion", "Psicopedagogia", "Publicidad", "Relaciones Internacionales", "Sociologia", "Terapia Fisica", "Turismo" }));
         carreras.addActionListener(new java.awt.event.ActionListener() {
@@ -74,116 +121,54 @@ public class Estadisticas extends javax.swing.JFrame {
                 carrerasActionPerformed(evt);
             }
         });
+        getContentPane().add(carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 180, 50));
 
-        jLabel4.setText("Carrera Universitaria");
-
-        jLabel5.setText("Cantidad de personas por esta carrera");
-
+        lista_paises.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
+        lista_paises.setBorder(null);
+        lista_paises.setDoubleBuffered(true);
         lista_paises.setEnabled(false);
+        lista_paises.setHighlighter(null);
+        lista_paises.setInheritsPopupMenu(true);
         lista_paises.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lista_paisesActionPerformed(evt);
             }
         });
+        getContentPane().add(lista_paises, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 304, 110, 40));
 
-        back.setText("Regresar");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
             }
         });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 620, 50, 40));
 
-        jLabel6.setText("Sin beneficio");
-
+        pais_ben.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        pais_ben.setBorder(null);
         pais_ben.setEnabled(false);
+        getContentPane().add(pais_ben, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 80, 20));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(back)
-                                    .addComponent(paises, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(pais_ben, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(123, 123, 123)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(lista_carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lista_total, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
-                .addContainerGap(12, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(28, 28, 28)
-                    .addComponent(lista_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(362, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(carreras, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(paises))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(lista_carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(pais_ben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lista_total, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(back)
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(162, Short.MAX_VALUE)
-                    .addComponent(lista_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(158, 158, 158)))
-        );
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(817, 20, 40, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
+            }
+        });
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 670));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Estadisticas.png")); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -218,6 +203,23 @@ public class Estadisticas extends javax.swing.JFrame {
     private void carrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrerasActionPerformed
         cantidad_por_carrera();
     }//GEN-LAST:event_carrerasActionPerformed
+
+    private void lista_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lista_totalActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+    }//GEN-LAST:event_jLabel1MouseDragged
 
     /**
      * @param args the command line arguments
@@ -322,13 +324,9 @@ public class Estadisticas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JComboBox<String> carreras;
+    private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField lista_carreras;
     private javax.swing.JTextField lista_paises;
     private javax.swing.JTextField lista_total;
