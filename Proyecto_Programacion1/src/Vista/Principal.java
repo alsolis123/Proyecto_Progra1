@@ -578,71 +578,120 @@ public class Principal extends javax.swing.JFrame {
     }
     void modificar() throws IOException{
         
-        String ida = id.getText();
+//        Este vector es para poder investigar si en nombre y apellidos existe un numero de estos
+        char nums[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        
+        char temporal;
+        int largo, cont = 0;
+        boolean n=false, a1=false, a2=false;
+        
         String nom = nombre.getText();
         String ap1 = apellido1.getText();
         String ap2 = apellido2.getText();
-        String id = identificacion.getText();
-        String carrer = (String)carrera.getSelectedItem();
-        String civil = (String)estado_civil.getSelectedItem();
-        String p_origen = (String)pais.getSelectedItem();
-        String direc = direccion.getText();
-        String uni = universidad.getText();
-        String cell = telefono.getText();
-        String email = correo.getText();
-        boolean status = estado.isSelected();
-        String obs = observacion.getText();
         
-        //        Obtener fecha
-
-        Date nacimiento = fecha.getDate();
-        LocalDate ahora = LocalDate.now();
-        LocalDate fecha_nacimiento;
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaCadena = formato.format(nacimiento);
-        fecha_nacimiento = LocalDate.parse(fechaCadena, fmt);
-        Period periodo = Period.between(fecha_nacimiento, ahora);
-        String años = String.valueOf(periodo.getYears());
-        String meses = String.valueOf(periodo.getMonths());
-        String dias = String.valueOf(periodo.getDays());
-        String edad =  años + " años " + meses + " meses "+dias+" dias" ;
+        largo = nom.length()-1;
         
-        //Manejo de activos e inactivos
-        String estado;
-        
-        if(status==true){
-            estado ="Activo";
-        }else{
-            estado="Inactivo";
-        }
-        
-        
-        if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
-            p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
-            email.equals("")){
-            
-            JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
-        }else{
-            Capacidad cup = new Capacidad();
-           
-           if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
-            String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
-                "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
-                "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
-            try{
-                cn=con.getConnection();
-                st=cn.createStatement();
-                st.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "Registro actualizado");
-                vaciar_cajas();
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, ex);
+        while(largo>=0){
+            temporal=nom.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    n = true;
+                }
             }
-           }else{
-               JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
-           }
-        } 
+            cont++;
+            largo--;
+        }
+        largo = ap1.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap1.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a1 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        largo = ap2.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap2.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a2 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        if(n==true||a1==true||a2==true){
+            JOptionPane.showMessageDialog(null, "El nombre y los apellidos no pueden contener numeros");
+        }else{
+        
+            String ida = id.getText();
+            String id = identificacion.getText();
+            String carrer = (String)carrera.getSelectedItem();
+            String civil = (String)estado_civil.getSelectedItem();
+            String p_origen = (String)pais.getSelectedItem();
+            String direc = direccion.getText();
+            String uni = universidad.getText();
+            String cell = telefono.getText();
+            String email = correo.getText();
+            boolean status = estado.isSelected();
+            String obs = observacion.getText();
+
+            //        Obtener fecha
+
+            Date nacimiento = fecha.getDate();
+            LocalDate ahora = LocalDate.now();
+            LocalDate fecha_nacimiento;
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaCadena = formato.format(nacimiento);
+            fecha_nacimiento = LocalDate.parse(fechaCadena, fmt);
+            Period periodo = Period.between(fecha_nacimiento, ahora);
+            String años = String.valueOf(periodo.getYears());
+            String meses = String.valueOf(periodo.getMonths());
+            String dias = String.valueOf(periodo.getDays());
+            String edad =  años + " años " + meses + " meses "+dias+" dias" ;
+
+            //Manejo de activos e inactivos
+            String estado;
+
+            if(status==true){
+                estado ="Activo";
+            }else{
+                estado="Inactivo";
+            }
+
+
+            if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
+                p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
+                email.equals("")||carrer.equals("Seleccione una carrera")||civil.equals("Sin especificar")||p_origen.equals("Seleccione uno")){
+
+                JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
+            }else{
+                Capacidad cup = new Capacidad();
+
+               if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
+                String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
+                    "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
+                    "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
+                try{
+                    cn=con.getConnection();
+                    st=cn.createStatement();
+                    st.executeUpdate(sql);
+                    JOptionPane.showMessageDialog(null, "Registro actualizado");
+                    vaciar_cajas();
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+               }else{
+                   JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
+               }
+            }
+        }
     }
     
     void eliminar(){
@@ -713,7 +762,7 @@ public class Principal extends javax.swing.JFrame {
         
 
         }else if(filtrar.getSelectedItem().equals("Identificacion")){
-            sentencia = "Select * from principal order by identificacion desc";
+            sentencia = "Select * from principal order by identificacion asc";
         
         
         }else{
@@ -765,12 +814,59 @@ public class Principal extends javax.swing.JFrame {
     }
             
     void agregar() throws IOException{
+//        Este vector es para poder investigar si en nombre y apellidos existe un numero de estos
+        char nums[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
         
+        String nom, ap1, ap2;
+        char temporal;
+        int largo, cont = 0;
+        boolean n=false, a1=false, a2=false;
+        nom = nombre.getText();
+        ap1 = apellido1.getText();
+        ap2 = apellido2.getText();
+        
+        largo = nom.length()-1;
+        
+        while(largo>=0){
+            temporal=nom.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    n = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        largo = ap1.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap1.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a1 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        largo = ap2.length()-1;
+        cont=0;
+        while(largo>=0){
+            temporal=ap2.charAt(cont);
+            for (int i = 0; i < nums.length; i++) {
+                if(nums[i]==temporal){
+                    a2 = true;
+                }
+            }
+            cont++;
+            largo--;
+        }
+        if(n==true||a1==true||a2==true){
+            JOptionPane.showMessageDialog(null, "El nombre y los apellidos no pueden contener numeros");
+        }else{
         
         boolean condicion = false;
-        String nom = nombre.getText();
-        String ap1 = apellido1.getText();
-        String ap2 = apellido2.getText();
+         
         String id = identificacion.getText();
         String carrer = (String)carrera.getSelectedItem();
         String civil = (String)estado_civil.getSelectedItem();
@@ -810,7 +906,7 @@ public class Principal extends javax.swing.JFrame {
 
             if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
                     p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
-                    email.equals("")||condicion == true){
+                    email.equals("")||carrer.equals("Seleccione una carrera")||civil.equals("Sin especificar")||p_origen.equals("Seleccione uno")||condicion == true){
 
                 JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
                 condicion = false;
@@ -841,7 +937,7 @@ public class Principal extends javax.swing.JFrame {
         
         
         
-        
+        }
     }
     
 
