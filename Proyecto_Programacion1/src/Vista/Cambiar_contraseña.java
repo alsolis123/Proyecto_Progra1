@@ -209,7 +209,7 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         String contraseña1 = c_actual.getText();
         String contraseña2 = c_nueva.getText();
         String user = usuario.getText();
-        String sql1, sql2, valor = "", id="";
+        String sql1, sql2, valor = "", id="", us = "";
         boolean error;
         
         
@@ -223,12 +223,17 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
                 cn= con1.getConnection();
                 st= cn.createStatement();
                 rs= st.executeQuery(sql1);
-            
+                
+                
                 
                 while(rs.next()){
+                    us = rs.getString("usuario");
                     id = rs.getString("id");
                     valor = rs.getString("contraseña");
                 }
+                if(us.equals("")){
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado no existe");
+                }else{
                 if(contraseña1.equals(valor)){
                     
                     sql2 = "update usuario set contraseña = '"+contraseña2+"' where id = '"+id+"';";
@@ -247,7 +252,7 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "La contraseña ingresada como actual es incorrecta");
                 }
                     
-                
+                }
 
         }catch(SQLException ex){
             System.out.println(ex);
