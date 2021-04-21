@@ -143,6 +143,7 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
     }//GEN-LAST:event_cambiarActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+//        Devuelve al usuario a la panatalla de inicio
         Inicio ini = new Inicio();
         ini.setVisible(true);
         this.setVisible(false);
@@ -212,36 +213,46 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         String sql1, sql2, valor = "", id="", us = "";
         boolean error;
         
-        
+//        Si no ingresa algun valor va a arrojar un error
         
         if(contraseña1.equals("")||contraseña2.equals("")||user.equals("")){
             JOptionPane.showMessageDialog(null, "Debe de ingresar cada uno de los datos");
         }else{
+//            va a filtrar la tabla por el usuario agregado
             sql1 = "Select * from usuario where usuario = '"+user+"';";
             
             try{
                 cn= con1.getConnection();
                 st= cn.createStatement();
+//                no es un update
                 rs= st.executeQuery(sql1);
                 
                 
-                
+//                va a obtener esos valores de la base de datos
                 while(rs.next()){
                     us = rs.getString("usuario");
                     id = rs.getString("id");
                     valor = rs.getString("contraseña");
                 }
+//                Si no hay usuario entonces va a dejar la tabla vacia cuando lo filtre
+//                entonces si eso pasa el usuario que ingreso no existe y el sistema 
+//                le va a arrojar un error
                 if(us.equals("")){
                     JOptionPane.showMessageDialog(null, "El usuario ingresado no existe");
                 }else{
+//                Si la contraseña actual que ingreso el usuario es igual al que estaba en la base de datos
+//                entonces va a permitir modificar la contraseña
                 if(contraseña1.equals(valor)){
                     
+//                    Es necesario filtra por el id
                     sql2 = "update usuario set contraseña = '"+contraseña2+"' where id = '"+id+"';";
                     try{
                         cn = con1.getConnection();
                         st = cn.createStatement();
+//                        esto es un update porque se va a modificar la tabla de la base de datos
                         st.executeUpdate(sql2);
                         JOptionPane.showMessageDialog(null,"Contraseña modificada");
+//                        Una vez este modificado, automaticamente lo arrojara al inicio
                         Inicio ini = new Inicio();
                         ini.setVisible(true);
                         this.setVisible(false);
