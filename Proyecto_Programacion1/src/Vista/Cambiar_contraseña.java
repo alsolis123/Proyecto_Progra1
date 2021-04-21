@@ -52,6 +52,13 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         exit.setContentAreaFilled(false);
         exit.setBorderPainted(false);
         
+        ojo_actual.setOpaque(false);
+        ojo_actual.setContentAreaFilled(false);
+        ojo_actual.setBorderPainted(false);
+        
+        ojo_nueva.setOpaque(false);
+        ojo_nueva.setContentAreaFilled(false);
+        ojo_nueva.setBorderPainted(false);
     }
 
     /**
@@ -69,6 +76,8 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         c_actual = new javax.swing.JPasswordField();
         c_nueva = new javax.swing.JPasswordField();
         exit = new javax.swing.JButton();
+        ojo_nueva = new javax.swing.JButton();
+        ojo_actual = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -95,12 +104,12 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         usuario.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         usuario.setForeground(new java.awt.Color(77, 92, 126));
         usuario.setBorder(null);
-        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 122, 260, 30));
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 122, 226, 30));
 
         c_actual.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         c_actual.setForeground(new java.awt.Color(77, 92, 126));
         c_actual.setBorder(null);
-        getContentPane().add(c_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 173, 160, 30));
+        getContentPane().add(c_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 173, 125, 30));
 
         c_nueva.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         c_nueva.setForeground(new java.awt.Color(77, 92, 126));
@@ -110,7 +119,7 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
                 c_nuevaActionPerformed(evt);
             }
         });
-        getContentPane().add(c_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 222, 160, 30));
+        getContentPane().add(c_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 222, 125, 30));
 
         exit.setBorder(null);
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +128,20 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
             }
         });
         getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 2, 50, 40));
+
+        ojo_nueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ojo_nuevaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ojo_nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 220, 50, 40));
+
+        ojo_actual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ojo_actualActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ojo_actual, new org.netbeans.lib.awtextra.AbsoluteConstraints(317, 160, 50, 40));
 
         jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -132,7 +155,7 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 480));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Cambiar contraseña.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Downloads\\Cambiar contraseña (1).png")); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -165,6 +188,37 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
     private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void ojo_actualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ojo_actualActionPerformed
+         
+        
+        char texto;
+        
+        texto = c_actual.getEchoChar();
+        
+
+        if (texto!='*'){
+            c_actual.setEchoChar('*');
+        }else{
+            c_actual.setEchoChar((char)0);
+        }
+        
+    }//GEN-LAST:event_ojo_actualActionPerformed
+
+    private void ojo_nuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ojo_nuevaActionPerformed
+        char texto;
+       
+        texto = c_nueva.getEchoChar();
+        
+
+        if (texto!='*'){
+            c_nueva.setEchoChar('*');
+        }else{
+            c_nueva.setEchoChar((char)0);
+        }
+        
+    
+    }//GEN-LAST:event_ojo_nuevaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +337,8 @@ public class Cambiar_contraseña extends javax.swing.JFrame {
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton ojo_actual;
+    private javax.swing.JButton ojo_nueva;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
