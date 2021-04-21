@@ -143,6 +143,7 @@ public class Creacion_usuario extends javax.swing.JFrame {
         
         
         //Obtener datos de interfaz grafica
+//        Aqui esta declarando un objeto del tipo persona que se uso en inicio
         Persona p1 = new Persona();
         String nomb = nom.getText();
         String apell = ape.getText();
@@ -150,18 +151,27 @@ public class Creacion_usuario extends javax.swing.JFrame {
         String usuario = user.getText();
         String contra = password.getText();
         boolean condicion = false;
-        // Enviar a clase
+        // Enviar a clase los valores ingresados 
         p1.setNombre(nomb);
         p1.setApellido(apell);
         p1.setCorreo(correo);
         p1.setUsuario(usuario);
         p1.setContraseña(contra);
-        // Ejecutar metodo de clase
+        // Ejecutar metodo de clase que verifica si ese nuevo usuario ya estaba creado
+//        no pueden existir dos usuarios iguales, si pueden existir contraseñas iguales
+//        Si no existe entonces va a ejecutar dentro un metodo que se llama enviar.
+//        Enviar() enviara los valores ingresados a la base de datos para que queden resgitrados
+//        pero si puso valores en blanco tamien enviara un error
+//        Enviar() es un metodo privado
         p1.ejecutar();
+        
+//        Si se agrega correctamente entonces condicion va a ser true
         condicion = p1.isCondicion();
         
         Inicio ini = new Inicio();
         
+//        Entonces si se agrego correctamente la pantalla lo enviara directo a la
+//        pantalla principal
         if (condicion == true){
             
             ini.setVisible(true);
@@ -176,6 +186,7 @@ public class Creacion_usuario extends javax.swing.JFrame {
     }//GEN-LAST:event_crearActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+//        Esto lo regresa a la pantalla de inicio
         Inicio ini = new Inicio();
         ini.setVisible(true);
         this.setVisible(false);
