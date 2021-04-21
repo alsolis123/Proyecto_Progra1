@@ -38,6 +38,10 @@ public class Creacion_usuario extends javax.swing.JFrame {
         exit.setContentAreaFilled(false);
         exit.setBorderPainted(false);
         
+        ojo_contraseña.setOpaque(false);
+        ojo_contraseña.setContentAreaFilled(false);
+        ojo_contraseña.setBorderPainted(false);
+        
         
         
         
@@ -57,10 +61,11 @@ public class Creacion_usuario extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         user = new javax.swing.JTextField();
         ape = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
         crear = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         exit = new javax.swing.JButton();
+        password = new javax.swing.JPasswordField();
+        ojo_contraseña = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -93,11 +98,6 @@ public class Creacion_usuario extends javax.swing.JFrame {
         ape.setBorder(null);
         getContentPane().add(ape, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 119, 170, 30));
 
-        password.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
-        password.setForeground(new java.awt.Color(77, 92, 126));
-        password.setBorder(null);
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 130, 30));
-
         crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearActionPerformed(evt);
@@ -119,6 +119,18 @@ public class Creacion_usuario extends javax.swing.JFrame {
         });
         getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 2, 40, 40));
 
+        password.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        password.setForeground(new java.awt.Color(77, 92, 126));
+        password.setBorder(null);
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 312, 133, 30));
+
+        ojo_contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ojo_contraseñaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ojo_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, 40, 30));
+
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel2MouseDragged(evt);
@@ -131,7 +143,7 @@ public class Creacion_usuario extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 480));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Desktop\\Imagenes Java\\Crear usuario (3).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\alsolis\\Downloads\\Crear usuario.png")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -209,6 +221,19 @@ public class Creacion_usuario extends javax.swing.JFrame {
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_jLabel2MouseDragged
 
+    private void ojo_contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ojo_contraseñaActionPerformed
+        char texto;
+        
+        texto = password.getEchoChar();
+        
+
+        if (texto!='*'){
+            password.setEchoChar('*');
+        }else{
+            password.setEchoChar((char)0);
+        }
+    }//GEN-LAST:event_ojo_contraseñaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,7 +278,8 @@ public class Creacion_usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField nom;
-    private javax.swing.JTextField password;
+    private javax.swing.JButton ojo_contraseña;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }
