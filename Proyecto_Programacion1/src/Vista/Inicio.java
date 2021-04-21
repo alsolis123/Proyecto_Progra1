@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 
 public class Inicio extends javax.swing.JFrame {
-    public String usuario_inicio;
+//    public String usuario_inicio;
     public int x,y;
     
     public Inicio() {
@@ -15,7 +15,6 @@ public class Inicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 //        Presionar enter y presionar ingresar
         this.getRootPane().setDefaultButton(ingresar);
-        this.usuario_inicio = "";
         
         
         
@@ -134,6 +133,7 @@ public class Inicio extends javax.swing.JFrame {
     
     
     private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
+//        Da acceso a crear usuario
         Creacion_usuario registrarse = new Creacion_usuario();
         registrarse.setVisible(true);
         this.setVisible(false);
@@ -141,42 +141,58 @@ public class Inicio extends javax.swing.JFrame {
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         boolean acceso=false;
+//        Aqui se esta creando un objeto de tipo persona
+//        Este objeto va a verificar si el usuario y la contraseña si son los correctos
+//          Primero va a ver si el usuario si existe y si es asi entonces luego va a
+//          confirmar que la contraseña es la correcta
         Persona p2 = new Persona();
         
+//        Va a obtener los valores de la interfaz grafica
         String usuario = this.usuario.getText();
         String contraseña = this.contraseña.getText();
         
+//        Aca va a enviar el usuario y contraseña a la clase del objeto que se creo
         p2.setUsuario(usuario);
         p2.setContraseña(contraseña);
         
+//        Aca se va a ejecutar el metodo verificar para ver si existe verdaderamente
+//        el usuario y contraseña, es solo para ejecutar el metodo
         p2.verificar();
+//        Una vez se ejecuto se obtiene el valor de acceso que es un booleano
+//        si el valor es true entonces va a dar acceso en el if de abajo para que
+//        envie al usuario a la pantalla de distribucion
         acceso = p2.isAcceso();
         
+//        Si el acceso es true entonces va a enviar al usuario a distribucion
         if(acceso == true){
             Distribucion dis = new Distribucion();
             this.setVisible(false);
             dis.setVisible(true);
-            usuario_inicio = this.usuario.getText();
         }
     }//GEN-LAST:event_ingresarActionPerformed
 
     private void in_btn_cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_in_btn_cambiarActionPerformed
+//        Enviar al usuario a cambiar contraseña
         Cambiar_contraseña change = new Cambiar_contraseña();
         change.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_in_btn_cambiarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+//        Cuando le de salir arriba a la derecha va a cerrar el programa, dispose no es
+//        tan eficiente como esto
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+//        Obtiene los valor de donde de click en la palatalla, las coordenadas
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jLabel1MousePressed
 
     private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
-       this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
+//       Movera la pantalla en funcion de donde lo arrastre
+        this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
  
     }//GEN-LAST:event_jLabel1MouseDragged
 

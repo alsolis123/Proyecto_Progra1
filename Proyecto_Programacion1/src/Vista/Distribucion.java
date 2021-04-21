@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 
 public class Distribucion extends javax.swing.JFrame {
     public int x,y;
-    
+//    Esta clase basicamente son puros accesos a otras ventanas que se seleccionen en los menus
+//    no hay mucho que documentar
     public Distribucion() {
         initComponents();
         setLocationRelativeTo(null);

@@ -33,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         listar();
+//        Se le da el color desde que inicia la ventana, es el azul
         estado.setBackground(new Color (77,92,126));
         
         //Darle movilidad a la ventana
@@ -362,7 +363,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_nombreActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+//        Se le agrega el try/catch ya que hay manejo de errores que vienen de los objetos conexion
         try{
+//        Se necesitan todos estos metodos para lograr hacer el ciclo completo de agregar dejando las cajas vacias
         agregar();
         vaciar_cajas();
         limpiar();
@@ -381,12 +384,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void TablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosMouseClicked
+//        Esto es para colocar lo seleccionado de las filas en las cajas
+        
+//        Selectedrow es para obtener el valor de la fila que se selecciono
         int fila = TablaDatos.getSelectedRow();
         
         if(fila == -1){
+//            El valor -1 se devuelve cuando no esta selecionado nada
             JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
        }else{
-           
+//           La fila depende de la que se selecciono y las columanas hay que ir una por una
+//            esta obteniendo los valores de la tabla para luego ponerlo en los espacios del formulario
            String estud = (String)TablaDatos.getValueAt(fila, 0);
            String nom = (String)TablaDatos.getValueAt(fila, 1);
            String apel1 = (String)TablaDatos.getValueAt(fila, 2);
@@ -403,6 +411,8 @@ public class Principal extends javax.swing.JFrame {
            String obs = (String)TablaDatos.getValueAt(fila, 14);
            boolean estado;
            
+           
+//           Para poner los botones de colores verde y azul y tambien el valor que tiene Activo o Inactivo
            if(status.equals("Activo")){
                estado = true;
                this.estado.setBackground(new Color(82, 146, 6));
@@ -414,18 +424,21 @@ public class Principal extends javax.swing.JFrame {
            }
            
            
-
+//           Esto es para obtener la fecha de nacimiento desde la base de datos
+//           ya que no esta en la tabla
            String sql= "Select fecha_de_nacimiento from principal where idprincipal = "+ estud;
            try{
                cn= con.getConnection();
                st= cn.createStatement();
                rs= st.executeQuery(sql);
                while(rs.next()){
+//                   solo esto esta soliciando de la base de datos
                     String fecha1 = rs.getString("fecha_de_nacimiento");
-
+//                    Aca se le esta dando el formato que debe de tener
                     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+//                    Aqui ala fecha especifica que tenemos se le da el formato que se busco anteriormente
                     Date date1 = formato.parse(fecha1);
-
+//                    Se esta tomando los datos que se pidieron y agregandolos a los textfields y demas
                     id.setText(estud);
                     nombre.setText(nom);
                     apellido1.setText(apel1);
@@ -459,6 +472,8 @@ public class Principal extends javax.swing.JFrame {
     
     
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+//        Esto arroja un error cuando se da modificar sin tener nada seleccionado
+//        por eso se toma el error y el catch arroja un mensaje que dice que debe seleccionar algo
         try{
             modificar();
             limpiar();
@@ -467,14 +482,19 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe de seleccionar algo de la lista");
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void limpiar_cajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiar_cajaActionPerformed
+//       La unica funcion es dejar las cajas limpias para poder escribir sin
+//        tener estorbo
         vaciar_cajas();
     }//GEN-LAST:event_limpiar_cajaActionPerformed
 
     private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
+//        Aqui evalua el boton y se asigna otro color y texto
         if(estado.isSelected()){
             estado.setBackground(new Color(82, 146, 6));
             estado.setText("Activo");
@@ -489,12 +509,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_carreraActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+//        Devolverse a la pantalla inicial
         Distribucion dis = new Distribucion();
         dis.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+//        Dispose no cierra por completo la pantalla por lo que se utiliza este mejor
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
@@ -507,19 +529,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
+//        Limpia toda la tabla y despues va a listar por el filtro que se agrego
         limpiar();
-        listar2();
-        
-        
-        
+        listar2();  
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+//        Obtiene los valores en coordenadas donde esta el mouse ubicado
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jLabel2MousePressed
 
     private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+//        Ubica la pantalla donde esta el mouse, esto se ejecuta cuando se arrastra
         this.setLocation(this.getLocation().x + evt.getX() - x, this.getLocation().y + evt.getY() - y);
     }//GEN-LAST:event_jLabel2MouseDragged
 
@@ -558,6 +580,7 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     void vaciar_cajas(){
+//        Esto va a vaciar las cajas 
         id.setText(null);
         nombre.setText("");
         apellido1.setText("");
@@ -567,16 +590,19 @@ public class Principal extends javax.swing.JFrame {
         estado_civil.setSelectedItem("Sin especificar");
         pais.setSelectedItem("Seleccione uno");
         direccion.setText("");
+//        La fecha la devuelve a cero con esto
         fecha.setDate(null);
         universidad.setText("");
         telefono.setText("");
         correo.setText("");
+//        asi se devuelve un booleano
         estado.setSelected(false);
         observacion.setText("");
+//        Esto devuelve el boton al color azul
         estado.setBackground(new Color (187,187,187));
         estado.setText("Inactivo");
     }
-    void modificar() throws IOException{
+    void modificar() throws IOException, SQLException{
         
 //        Este vector es para poder investigar si en nombre y apellidos existe un numero de estos
         char nums[]={'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -584,20 +610,38 @@ public class Principal extends javax.swing.JFrame {
         char temporal;
         int largo, cont = 0;
         boolean n=false, a1=false, a2=false;
-        
+//        Estos strings deben pedirse antes para probar si tienen numeros
         String nom = nombre.getText();
         String ap1 = apellido1.getText();
         String ap2 = apellido2.getText();
+        int c_listadas = 0;
+//        estas string se agregan para poder tener un manejo de los activos 
+//        cuando estos quieren ser modificados
+        String estad="", sql2="";
         
+        
+//        *Esto se hara con nombre y apellidos para evaluar cada uno si tiene numeros*
+//         Para conocer los numeros se va a evaluar con el vector que se declarro arriba nums
+//        Intente no crear el vector si no usar isDigits() pero no me sirvio
+
+//        Hay que buscar la manera de optimizarlo
+        
+//        el largo comienza con 1 por eso se le resta uno ya que se va a trabajar con 
+//        un vector que comienza con 0
+//        Esto va a dar el largo de la palabra, para que vaya palabra por palabra
         largo = nom.length()-1;
         
         while(largo>=0){
+//            temporal va a tomar la letra de la posicion del contador
+//            este inicia con el numero 0
             temporal=nom.charAt(cont);
             for (int i = 0; i < nums.length; i++) {
                 if(nums[i]==temporal){
                     n = true;
                 }
             }
+//            El contador aumenta y el largo disminuye, por que la palabra se mueve
+//            hacia adelante, y el largo va hasta que se acabe el tamaño de la palabra
             cont++;
             largo--;
         }
@@ -625,10 +669,12 @@ public class Principal extends javax.swing.JFrame {
             cont++;
             largo--;
         }
+//        Si alguno de los whiles anteriores encuentra numeros entonces lanzara un booleano de estos abajo 
+//        en true y arrojara un error apartir de eso
         if(n==true||a1==true||a2==true){
             JOptionPane.showMessageDialog(null, "El nombre y los apellidos no pueden contener numeros");
         }else{
-        
+//            Si no hay ningun numero en los anteriores entonces va a continuar con el programa
             String ida = id.getText();
             String id = identificacion.getText();
             String carrer = (String)carrera.getSelectedItem();
@@ -641,31 +687,41 @@ public class Principal extends javax.swing.JFrame {
             boolean status = estado.isSelected();
             String obs = observacion.getText();
 
-            //        Obtener fecha
-
+            //        Obtener fecha 
+//            Aqui va a obtener la fecha con un valor tipo date
             Date nacimiento = fecha.getDate();
+//            Aqui va a tomar la fecha de hoy
             LocalDate ahora = LocalDate.now();
+//            aqui se genera un dato tipo LocalDate
             LocalDate fecha_nacimiento;
+//            Se declara el formato que se va a necesitar
             DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+//            se toma la fecha de naciemiento que se obtuvo tipo date y se le da el formato
             String fechaCadena = formato.format(nacimiento);
+            
             fecha_nacimiento = LocalDate.parse(fechaCadena, fmt);
+//            Objeto tipo period que nos va a permitir separa por años, meses y dias
             Period periodo = Period.between(fecha_nacimiento, ahora);
+//            Aqui es donde se divide en años, meses y dias en valores de tipo String
             String años = String.valueOf(periodo.getYears());
             String meses = String.valueOf(periodo.getMonths());
             String dias = String.valueOf(periodo.getDays());
+//            Y aqui se une en un unico String
             String edad =  años + " años " + meses + " meses "+dias+" dias" ;
 
             //Manejo de activos e inactivos
             String estado;
-
+//            Basicamente se le esta dando un valor cuando el booleano esta activado o no
+//            esto para poder guardar en la base de datos mysql
             if(status==true){
                 estado ="Activo";
             }else{
                 estado="Inactivo";
             }
 
-
+//            Si hay algun valor que no se hubiera rellenado entonces va a lanzar un error
+//            para que lo llene, y los combobox tambien estan incluidos aca
             if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
                 p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
                 email.equals("")||carrer.equals("Seleccione una carrera")||civil.equals("Sin especificar")||p_origen.equals("Seleccione uno")){
@@ -673,21 +729,47 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
             }else{
                 Capacidad cup = new Capacidad();
-
-               if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
+                sql2 ="Select * from principal where idprincipal='"+ida+"';";
+                cn= con.getConnection();
+                st= cn.createStatement();
+                rs= st.executeQuery(sql2);
+                while(rs.next()){
+                    estad = rs.getString("estado");
+                }
+//                Si esta activo entonces va a restar un numero para que no cuente el que selecciono
+               if(estad.equals("Activo")){
+                   c_listadas = cup.Cantidad_listadas(p_origen)-1;
+               }else{
+//                   Si no esta activo entonces no debe de restar nada
+                   c_listadas = cup.Cantidad_listadas(p_origen);
+               }
+//               c_listadas esta obteniendo los valores dependiendo si esta seleccionado o no
+               if(c_listadas < cup.Capacidad_personas(p_origen)||status==false){
+//                Si se logra cumplir que de acuerdo con la cantidad de habitantes del pais
+//                si hay mas becas entonces se va a ir a la base de datos para modificar 
+//                los datos
                 String sql = "update principal set nombre='"+nom+"',primer_apellido='"+ap1+"',segundo_apellido='"+ap2+"',identificacion='"+id+"',carrera='"+carrer+
                     "',estado_civil='"+civil+"',pais_de_origen='"+p_origen+"',direccion='"+direc+"',fecha_de_nacimiento='"+fechaCadena+
                     "',edad='"+edad+"',universidad='"+uni+"',telefono='"+cell+"',correo='"+email+"',estado='"+estado+"',observaciones='"+obs+"' where idprincipal="+ida;
                 try{
+//                    ya que se estan modificando los datos entonces hay que hacerlo atraves de un 
+//                    executeUpdate y no un executeQuery
                     cn=con.getConnection();
                     st=cn.createStatement();
                     st.executeUpdate(sql);
+//                    Una vez esta modificado entonces lanza un mensaje de actualizacion
+//                    y tambien vacia todas las cajas
+//                    donde este metodo se ejecuta(boton de modificar) hay un listar
+//                    que va a permitir listar los valores ya modificados, esto se ve instantaneamente 
+//                    de darle click sobre "Resgitro actualizado"
                     JOptionPane.showMessageDialog(null, "Registro actualizado");
                     vaciar_cajas();
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(null, ex);
                 }
                }else{
+//                   Este es el mensaje que se arroja cuando no se cumple con las condiciones de 
+//                   habitantes
                    JOptionPane.showMessageDialog(null, "No se puede activar este usuario ya que este pais no cuenta con mas cupos de becados");
                }
             }
@@ -695,14 +777,17 @@ public class Principal extends javax.swing.JFrame {
     }
     
     void eliminar(){
+//        Esto basicamente va a eliminar tomando en cuenta la fila que se esta 
+//        seleccionando
         int fila = TablaDatos.getSelectedRow();
         String ida = (String)TablaDatos.getValueAt(fila, 0);
-        
+//        se envia a mysql
         String sql = "delete from principal where idprincipal = "+ida;
         try{
             
             cn=con.getConnection();
             st=cn.createStatement();
+//            no es un query si no un update
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Eliminado");
             
@@ -716,16 +801,18 @@ public class Principal extends javax.swing.JFrame {
     }
     
     void listar(){
-        
+//        Aca estoy primero asignando al string lo que voy a enviar a mysql
         String sql = "Select * from principal";
         try{
         cn= con.getConnection();
         st= cn.createStatement();
         rs= st.executeQuery(sql); 
+//        Esta es un vector para asiganar los valores, es necesario para agregar al model
         Object[]estudiante = new Object[16];
+        // se crea el model
         model = (DefaultTableModel) TablaDatos.getModel();
         while(rs.next()){
-            
+//            los nombres en verde es como se llaman las columnas en mysql
             estudiante[0]=rs.getString("idprincipal");
             estudiante[1]=rs.getString("nombre");
             estudiante[2]=rs.getString("primer_apellido");
@@ -741,8 +828,10 @@ public class Principal extends javax.swing.JFrame {
             estudiante[12]=rs.getString("correo");
             estudiante[13]=rs.getString("estado");
             estudiante[14]=rs.getString("observaciones");
+//            esto es un model que es como una estructura para la tablaDatos
             model.addRow(estudiante);
         }
+//        Aqui se agrega a la tablaDatos
         TablaDatos.setModel(model);
         
         }catch(Exception ex){
@@ -752,6 +841,8 @@ public class Principal extends javax.swing.JFrame {
         
     }
     void listar2(){
+//        Aqui se va a filtrar, dependiendo del filtro se va a obtener la sentencia
+//        que se va a lanzar como query en mysql
         String sentencia="";
         if(filtrar.getSelectedItem().equals("Id de Registro")){
             sentencia = "Select * from principal order by idprincipal desc";
@@ -770,17 +861,19 @@ public class Principal extends javax.swing.JFrame {
         
         
         }
-        
+//        La sentencia se agrega en el string
         String sql = sentencia;
         
         try{
         cn= con.getConnection();
         st= cn.createStatement();
+//        esto es solo un query
         rs= st.executeQuery(sql); 
         Object[]estudiante = new Object[16];
         model = (DefaultTableModel) TablaDatos.getModel();
         while(rs.next()){
             
+//            se van a obtener los datos en el orden que se ordenaron
             estudiante[0]=rs.getString("idprincipal");
             estudiante[1]=rs.getString("nombre");
             estudiante[2]=rs.getString("primer_apellido");
@@ -807,6 +900,8 @@ public class Principal extends javax.swing.JFrame {
         
     }
     void limpiar(){
+//        Aqui va ir eliminando fila por fila hasta eliminar todo
+//        Esto sirve para modificar la tabla
         for (int i = 0; i < TablaDatos.getRowCount(); i++) {
             model.removeRow(i);
             i--;
@@ -821,13 +916,19 @@ public class Principal extends javax.swing.JFrame {
         char temporal;
         int largo, cont = 0;
         boolean n=false, a1=false, a2=false;
+//        Estos primeros valores se necesitan antes que los demas para poder ver 
+//        si hay numeros en lo ingresado
         nom = nombre.getText();
         ap1 = apellido1.getText();
         ap2 = apellido2.getText();
         
+        
+//        Se va a usar un while por el nombre y apellidos, uno cada uno
+//        este es el largo de la palabra menos uno
         largo = nom.length()-1;
         
         while(largo>=0){
+//            el contador inica en cero, hasta tener todas las palabras
             temporal=nom.charAt(cont);
             for (int i = 0; i < nums.length; i++) {
                 if(nums[i]==temporal){
@@ -862,6 +963,8 @@ public class Principal extends javax.swing.JFrame {
             largo--;
         }
         if(n==true||a1==true||a2==true){
+//            Aqui esta el error en caso que los booleanos arrojen un true 
+//            por tener un numero en los jtextfields
             JOptionPane.showMessageDialog(null, "El nombre y los apellidos no pueden contener numeros");
         }else{
         
@@ -885,11 +988,14 @@ public class Principal extends javax.swing.JFrame {
             estado="Inactivo";
         }
         
+//        Este objeto se declara para obtener el calculo de los paises
         Capacidad cup = new Capacidad();
            
         if(cup.Cantidad_listadas(p_origen) < cup.Capacidad_personas(p_origen)||status==false){
         
         try{
+//            Aqui se vuelve a hacer el calculo para obtener los años a partir del 
+//            dato tipo date
             Date nacimiento = fecha.getDate();
             LocalDate ahora = LocalDate.now();
             LocalDate fecha_nacimiento;
@@ -903,7 +1009,7 @@ public class Principal extends javax.swing.JFrame {
             String dias = String.valueOf(periodo.getDays());
             String edad =  años + " años " + meses + " meses "+dias+" dias" ;
             
-
+//            El programa no va a permitir espacios vacios, todo esto es muy similar a modificar
             if(nom.equals("")||ap1.equals("")||ap2.equals("")||id.equals("")||carrer.equals("")||civil.equals("")||
                     p_origen.equals("")||direc.equals("")||uni.equals("")||cell.equals("")||
                     email.equals("")||carrer.equals("Seleccione una carrera")||civil.equals("Sin especificar")||p_origen.equals("Seleccione uno")||condicion == true){
@@ -911,13 +1017,14 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Falto uno o mas valores de ingresar");
                 condicion = false;
             }else{
-                
+//                Esto es para agregar una nueva fila dentro de la base de datos
                 String sql = "insert into principal(nombre, primer_apellido, segundo_apellido, identificacion, carrera, estado_civil, pais_de_origen, direccion, fecha_de_nacimiento, edad, universidad, telefono, correo, estado, observaciones)values('"+nom+"', '"+ap1+"', '"+ap2+"', '"+id+"', '"+carrer+"', '"+civil+"', '"+p_origen+"', '"+direc+"', '"+fechaCadena+"', '"+edad+"', '"+uni+"', '"+cell+"', '"+email+"','"+estado+"', '"+obs+"')";
                 try{
                     
                     
                     cn = con.getConnection();
                     st = cn.createStatement();
+//                    Esto no es un query si no que es un Update porque va a agregar un valor nuevo
                     st.executeUpdate(sql);
                     JOptionPane.showMessageDialog(null,"Usuario Agregado");
                     
@@ -932,6 +1039,7 @@ public class Principal extends javax.swing.JFrame {
             condicion = true;
         }
         }else{
+//            Si el calculo arroja que no ya se excedio el cupo entonces arrojara el error
             JOptionPane.showMessageDialog(null, "Ya no hay becas para este pais");
         }
         
